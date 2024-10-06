@@ -14,11 +14,11 @@ function Header() {
     <header>
       <Link href='/' className='logo'>
         <Image src='/logo.png' alt="logo" fill></Image>
-        <h1>ANKH.</h1>
+        <div className='title-logo'><h1>AN</h1><h1>KH.</h1></div>
       </Link>
       <nav>
         <Link href='/pricing'>Pricing</Link>
-        <Link href='/apout-us'>Apout Us</Link>
+        <Link href='/about'>About Us</Link>
         <Link href='/why-us'>Why ANKH</Link>
         <Link href='/process'>Process</Link>
       </nav>
