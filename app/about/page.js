@@ -97,7 +97,7 @@ export default function About() {
           <p>Ankh’s cold callers transform market chaos into pure opportunities with hard work, clear vision, and quality leads giving you the key to closing your real estate deals swiftly.</p>
         </div>
       </div>
-      <Access/>
+      <Access h='Ready to Access Real Estate Expertise?' p='The Key to Real Estate Success is Just a Click Away' book={false}/>
     </>
   );
 }

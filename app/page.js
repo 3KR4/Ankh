@@ -86,7 +86,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Access/>
+      <Access h='Ready to Access Real Estate Expertise?' p='The Key to Real Estate Success is Just a Click Away' book={false}/>
     </>
   );
 }

@@ -2,12 +2,16 @@
 
 import Link from 'next/link'
 
-function Access() {
+function Access({h, p, book}) {
   return (
-  <div className='access'>
-    <h1>Ready to Access Real Estate Expertise?</h1>
-    <p>The Key to Real Estate Success is Just a Click Away</p>
-    <Link className='main-button' href='/'>Succeed in Real Estate!</Link>
+  <div className={`access ${book ? 'book' : ''}`}>
+    <h1>{h}</h1>
+    <p>{p}</p>
+    {book ?
+      <button className='main-button'>Book Now</button> 
+    :
+      <Link className='main-button' href='/'>Succeed in Real Estate!</Link>
+    }
   </div>
   )
 }
