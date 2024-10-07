@@ -30,6 +30,73 @@ export default function About() {
           </div>
         </div>
       </div>
+      <div className='values container'>
+        <h1>What <span>Ankh</span> Represents</h1>
+        <div className='holder four'>
+        <div className='box'>
+          <Image src='/image/Honesty.png' alt='icon' fill></Image>
+          <h4>Honesty</h4>
+          <p>We ensure transparency about our processes and results giving you a clear view of how well our cold-calling generates high closure rate leads.</p>
+        </div>
+        <div className='box'>
+          <Image src='/image/Accountability.png' alt='icon' fill></Image>
+          <h4>Accountability</h4>
+          <p>We take full responsibility for our campaigns' efficiency, ensuring you get high-quality leads that are ready to close.</p>
+        </div>
+        <div className='box'>
+          <Image src='/image/Collaboration.png' alt='icon' fill></Image>
+          <h4>Collaboration</h4>
+          <p>We work closely with clients to tailor our strategies and goals to meet your business needs.</p>
+        </div>
+        <div className='box'>
+          <Image src='/image/Positivity.png' alt='icon' fill></Image>
+          <h4>Positivity</h4>
+          <p>Each cold call is met with enthusiasm making every call a step closer to closing a deal.</p>
+        </div>
+        </div>
+      </div>
+      <div className='our-process aboutPag container'>
+        <span className='hiddens'>Meet The Team</span>
+        <h1>The People <br/> Behind <span>ANKH</span></h1>
+        <div className='holder'>
+          <div className='box'>
+            <Image src='/image/linkid.png' alt='icon' fill></Image>
+            <h4>Doha | Business Developer <br/> <span>Previous Role overhere</span></h4>
+            <p>Doha is a master at forging partnerships and identifying new market opportunities. Her expertise in business strategy and relationship building has been key to expanding our client base and boosting revenue.</p>
+          </div>
+          <div className='box'>
+            <Image src='/image/linkid.png' alt='icon' fill></Image>
+            <h4>Ibrahim Kamal | Founder <br/> <span>Previous Role overhere</span></h4>
+            <p>With a decade of experience in strategic leadership, Ibrahim is the visionary behind our success. His passion for innovation and his ability to turn bold ideas into actionable plans have positioned our company as a market leader. </p>
+          </div>
+          <div className='box'>
+            <Image src='/image/linkid.png' alt='icon' fill></Image>
+            <h4>Heba Kamal | CFO <br/> <span>Previous Role overhere</span></h4>
+            <p>Heba is the financial backbone of our company, with an eye for detail and a knack for optimizing budgets. With over 15 years of experience in financial management.</p>
+          </div>
+        </div>
+      </div>
+      <div className='about container'>
+        <span className='hiddens'>About Us</span>
+        <h1>A Note from the <span>Founders</span></h1>
+        <div className='p-holder'>
+          <p>What if the wisdom of the ancient Egyptians could unlock modern real estate success? Ankh
+            connects centuries, harnessing the power of Egypt’s eternal key into advanced solutions for
+            today’s real estate market. Just as the Ankh symbol opened doors to fortune for the Egyptians,
+            our virtual assistance and cold-calling tools unlock golden opportunities in real estate. Ankh’s
+            Key provides opportunities to build your business just as Ankh’s symbol gave the ancient
+            Egyptians the key to building our world.
+          </p>
+          <p> Think of the pharaohs wielding the power of today’s technology – that’s the level of
+            transformation we bring to your business. Ankh’s virtual assistance is the modern-day
+            innovation we provide to you, precisely managing your leads and data. Our cold-calling
+            expertise ensures each call is perfectly handled, maximizing your chances of closure success,
+            similar to how the ancient Egyptians diligently crafted each hieroglyphic inscription to convey
+            detailed messages and ensure successful communication with their people.
+          </p>
+          <p>Ankh’s cold callers transform market chaos into pure opportunities with hard work, clear vision, and quality leads giving you the key to closing your real estate deals swiftly.</p>
+        </div>
+      </div>
       <Access/>
     </>
   );

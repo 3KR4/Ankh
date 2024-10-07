@@ -7,7 +7,7 @@ function Services() {
     <h2>ANKH Does it All</h2>
     <p>Your all-in-one solution for real estate success, handling every step with ease.</p>
 
-    <div className='holder'>
+    <div className='holder four'>
       <div className='box'>
         <Image src='/image/Cold Calling.png' alt='icon' fill></Image>
         <h4>Cold Calling</h4>
