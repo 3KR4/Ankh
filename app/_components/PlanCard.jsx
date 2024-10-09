@@ -72,7 +72,7 @@ const PlanCard = ({ plan }) => {
                 />
                 <span className="slider"></span>
               </div>
-              {extraKey.replace(/([A-Z])/g, ' $1')} <span className='plusPrice'>+${plan.extraPrice[extraKey]}</span>
+              {extraKey.replace(/([A-Z])/g, ' $1')} <span className='plusPrice'>${plan.extraPrice[extraKey]}</span>
             </label>
           ))}
         </div>
