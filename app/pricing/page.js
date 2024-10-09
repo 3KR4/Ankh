@@ -13,10 +13,10 @@ const plans = [
     title: 'Silver',
     details: 'Our Most Affordable',
     options: [
-      { name: '1 Agent', price: 500 },
-      { name: '2-4 Agents', price: 700 },
-      { name: '5-10 Agents', price: 920 },
-      { name: '11+ Agents', price: 1500 }, // Default value
+      { name: '1 Agent', price: 1115 },
+      { name: '2-4 Agents', price: 960 },
+      { name: '5-10 Agents', price: 935 },
+      { name: '11+ Agents', price: 920 }, // Default value
     ],
     features: ['Cold Caller', 'Quality Assurance', 'Customer Success Manager'],
     extraPrice: null, // No extraPrice for Silver
@@ -25,10 +25,10 @@ const plans = [
     title: 'Gold',
     details: 'Let Us Take the Lead for You!',
     options: [
-      { name: '1 Agent', price: 600 },
-      { name: '2-4 Agents', price: 850 },
-      { name: '5-10 Agents', price: 1000 },
-      { name: '11+ Agents', price: 1800 }, // Default value
+      { name: '1 Agent', price: 1250 },
+      { name: '2-4 Agents', price: 1100 },
+      { name: '5-10 Agents', price: 1050 },
+      { name: '11+ Agents', price: 1000 }, // Default value
     ],
     features: ['Cold Caller', 'Quality Assurance', 'Customer Success Manager', 'Tools'],
     extraPrice: null, // No extraPrice for Gold
@@ -37,10 +37,10 @@ const plans = [
     title: 'Platinum',
     details: 'Fits for Your Unique Needs',
     options: [
-      { name: '1 Agent', price: 800 },
-      { name: '2-4 Agents', price: 1200 },
-      { name: '5-10 Agents', price: 1500 },
-      { name: '11+ Agents', price: 2000 }, // Default value
+      { name: '1 Agent', price: 1250 },
+      { name: '2-4 Agents', price: 1100 },
+      { name: '5-10 Agents', price: 1050 },
+      { name: '11+ Agents', price: 1000 }, // Default value
     ],
     features: ['Cold Caller', 'Quality Assurance', 'Customer Success Manager', 'Tools'],
     extraPrice: { acquisitionTeam: 1600, dataTeam: 1175 },
@@ -49,10 +49,10 @@ const plans = [
     title: 'Titanium',
     details: 'Ultimate Pack for Total Coverage',
     options: [
-      { name: '1 Agent', price: 1000 },
-      { name: '2-4 Agents', price: 2000 },
-      { name: '5-10 Agents', price: 3775 },
-      { name: '11+ Agents', price: 5000 }, // Default value
+      { name: '1 Agent', price: 1250 },
+      { name: '2-4 Agents', price: 1100 },
+      { name: '5-10 Agents', price: 1050 },
+      { name: '11+ Agents', price: 1000 }, // Default value
     ],
     features: ['Cold Caller', 'Quality Assurance', 'Customer Success Manager', 'Tools'],
     extraPrice: { dataAndAcquisition: 2775 },

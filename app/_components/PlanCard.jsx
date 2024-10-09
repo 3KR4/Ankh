@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Check } from 'lucide-react';
-import Image from 'next/image'
+import Image from 'next/image';
 
 const PlanCard = ({ plan }) => {
-  const [selectedOption, setSelectedOption] = useState(plan.options[3]); // Default to '11+ Agents'
-  const [selectedExtraPrice, setSelectedExtraPrice] = useState(null); // Track the selected extra price option
+  const [selectedOption, setSelectedOption] = useState(plan.options[3]);
+  const [selectedExtraPrice, setSelectedExtraPrice] = useState(
+    plan.title === 'Titanium' ? 'dataAndAcquisition' : plan.title === 'Platinum' ? 'acquisitionTeam' : null
+  ); 
 
-  // Calculate final price based on the selected option and extra feature
   const calculateFinalPrice = () => {
     let basePrice = selectedOption.price;
     const extraPrice = selectedExtraPrice ? plan.extraPrice[selectedExtraPrice] : 0;
@@ -19,10 +20,14 @@ const PlanCard = ({ plan }) => {
   };
 
   const handleExtraPriceChange = (extraKey) => {
-    if (selectedExtraPrice === extraKey) {
-      setSelectedExtraPrice(null); // Uncheck if the same option is clicked again
+    if (plan.title === 'Titanium') {
+      setSelectedExtraPrice(extraKey);
     } else {
-      setSelectedExtraPrice(extraKey); // Select a new extra price
+      if (selectedExtraPrice === extraKey) {
+        setSelectedExtraPrice(null);
+      } else {
+        setSelectedExtraPrice(extraKey);
+      }
     }
   };
 
