@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Check } from 'lucide-react';
 import Image from 'next/image';
 
 const PlanCard = ({ plan }) => {
-  const [selectedOption, setSelectedOption] = useState(plan.options[3]);
+  const [menu, setMenu] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(plan.options[3]); // Default to the 11+ agent option
   const [selectedExtraPrice, setSelectedExtraPrice] = useState(
     plan.title === 'Titanium' ? 'dataAndAcquisition' : plan.title === 'Platinum' ? 'acquisitionTeam' : null
-  ); 
+  );
 
   const calculateFinalPrice = () => {
     let basePrice = selectedOption.price;
@@ -14,9 +15,10 @@ const PlanCard = ({ plan }) => {
     return basePrice + extraPrice;
   };
 
-  const handleOptionChange = (event) => {
-    const selectedOpt = plan.options.find(opt => opt.name === event.target.value);
+  const handleOptionChange = (x) => {
+    const selectedOpt = plan.options.find(opt => opt.name === x);
     setSelectedOption(selectedOpt);
+    setMenu(false); // Close the menu after selecting an option
   };
 
   const handleExtraPriceChange = (extraKey) => {
@@ -43,11 +45,20 @@ const PlanCard = ({ plan }) => {
       {/* Options Dropdown */}
       <div>
         <label>Select Plan Option</label>
-        <select value={selectedOption.name} onChange={handleOptionChange}>
-          {plan.options.map((opt, idx) => (
-            <option key={idx} value={opt.name}>{opt.name} (+${opt.price})</option>
-          ))}
-        </select>
+        <div className="select">
+          <button onClick={() => setMenu((prev) => !prev)}>{selectedOption.name} <Image src='/image/angle down.png' fill></Image></button>
+            <ul className={`menu ${menu && 'active'}`}>
+              {plan.options.map((opt, idx) => (
+                <li
+                  key={idx}
+                  className={selectedOption.name === opt.name ? 'active' : ''}
+                  onClick={() => handleOptionChange(opt.name)} // Use onClick instead of onChange
+                >
+                  {opt.name} (${opt.price})
+                </li>
+              ))}
+            </ul>
+        </div>
       </div>
 
       {/* Features */}
@@ -72,7 +83,7 @@ const PlanCard = ({ plan }) => {
                 />
                 <span className="slider"></span>
               </div>
-              {extraKey.replace(/([A-Z])/g, ' $1')} <span className='plusPrice'>${plan.extraPrice[extraKey]}</span>
+              {extraKey.replace(/([A-Z])/g, ' $1')} <span className='plusPrice'>+${plan.extraPrice[extraKey]}</span>
             </label>
           ))}
         </div>

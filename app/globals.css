@@ -159,25 +159,6 @@ button {
   }
 }
 
-
-
-#black-layer {
-  background: #0e0e0e91;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 100%;
-  height: 100%;
-  z-index: 8;
-  transition: 0.2s;
-  visibility: hidden;
-  opacity: 0;
-}
-body:has(.menu.active) #black-layer {
-  opacity: 1;
-  visibility: visible;
-}
 .top {
   font-size: 30px;
   font-weight: 700;
@@ -197,7 +178,7 @@ img {
   letter-spacing: 0.4px;
 }
 .main-button {
-  color: black;
+  color: #0d0d0c;
   background: var(--main-color);
   padding: 13px 26px;
   font-size: 18px;
@@ -231,6 +212,7 @@ a.main-button:hover {
 body > * > h1 {
   font-size: 65px;
   font-weight: 700;
+  text-align: center;
 }
 body > * > p {
   font-size: 22px;
@@ -417,12 +399,12 @@ header nav a.active {
 .services h2 {
   font-size: 60px;
   font-weight: 600;
-  color: black;
+  color: #0d0d0c;
   margin: 10px 0 3px;
 }
 .services > p {
   font-size: 17px;
-  color: black;
+  color: #0d0d0c;
   max-width: 421px;
 }
 .services .holder.four .box {
@@ -430,18 +412,18 @@ header nav a.active {
   text-align: left;
 }
 .services .holder.four img {
-  background: black;
+  background: #0d0d0c;
   padding: 7px;
   width: 43px !important;
   height: 43px !important;
 }
 .services .holder.four h4 {
-  color: black;
+  color: #0d0d0c;
   font-weight: 700;
   margin-top: 5px;
 }
 .services .holder.four p {
-  color: black;
+  color: #0d0d0c;
   font-weight: 600;
 }
 
@@ -593,7 +575,7 @@ header nav a.active {
 .access h1 {
   font-size: 53px;
   font-weight: 600;
-  color: black;
+  color: #0d0d0c;
   max-width: 564px;
   text-align: center;
   line-height: 1;
@@ -601,7 +583,7 @@ header nav a.active {
 }
 .access p {
   font-size: 19px;
-  color: black;
+  color: #0d0d0c;
   margin: 26px 0 19px;
   font-weight: 500;
 }
@@ -639,7 +621,7 @@ header nav a.active {
 }
 .mission .left a {
   background: white;
-  color: black;
+  color: #0d0d0c;
   display: flex;
   width: fit-content;
 }
@@ -871,7 +853,7 @@ header nav a.active {
   letter-spacing: 0;
 }
 .pricing-cards .card h2 span {
-  background: black;
+  background: #0d0d0c;
   border-radius: 50px;
   color: var(--main-color);
   font-size: 13px;
@@ -916,7 +898,7 @@ header nav a.active {
   background: var(--main-color);
 }
 .pricing-cards .card.gold .main-button:hover {
-  color: black;
+  color: #0d0d0c;
   background: white;
 }
 .pricing-cards .card hr {
@@ -940,7 +922,7 @@ header nav a.active {
   transform: translateY(-50%);
   background: var(--main-color);
   border-radius: 50px;
-  color: black;
+  color: #0d0d0c;
   font-size: 13px;
   font-weight: 700;
   padding: 3px 12px;
@@ -948,20 +930,89 @@ header nav a.active {
   min-width: 71px;
   text-align: center;
 }
-.pricing-cards .card select {
-  display: block;
+.pricing-cards .card .select {
+  position: relative;
+}
+.pricing-cards .card .select button {
   width: 100%;
-  margin: 8px 0 16px;
-  padding: 14px 12px;
-  border: none;
-  outline: none;
+  margin: 8px 0px 16px;
+  padding: 14px 15px;
   background: #7a7a79;
   color: white;
   border-radius: 6px;
   font-family: 'Manrope';
-  font-weight: 400;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.pricing-cards .card ul li {
+.pricing-cards .card .select button img {
+  width: 17px !important;
+  transition: 0.3s;
+}
+.pricing-cards .card .select:has(.menu.active) img {
+  transform: rotate(180deg);
+}
+.pricing-cards .card .select .menu {
+  background: #7a7a79;
+  padding: 7px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 51px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.3s;
+}
+.pricing-cards .card.gold .select .menu {
+  top: 49px;
+}
+.pricing-cards .card .select .menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.pricing-cards .card .select .menu li {
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  padding: 7px 20px;
+  width: 100%;
+  transition: 0.3s;
+  transition: 0.3s;
+}
+.pricing-cards .card .select .menu li:hover,
+.pricing-cards .card .select .menu li.active {
+  color: var(--main-color);
+  background: var(--section-color);
+}
+.pricing-cards .card .select .menu li.active {
+  background: transparent !important;
+  font-weight: 900;
+  cursor: auto;
+}
+.pricing-cards .card.gold .select button,
+.pricing-cards .card.gold .select .menu {
+  background: #0d0d0c; 
+}
+.pricing-cards .card.gold .select .menu li {
+  font-weight: 300;
+}
+.pricing-cards .card.gold .select .menu li:hover,
+.pricing-cards .card.gold .select .menu li.active {
+  color: var(--main-color);
+  background: var(--border-color);
+}
+.pricing-cards .card.gold .select .menu li.active {
+  background: transparent;
+  font-weight: 500;
+}
+.pricing-cards .card .select.active .menu {
+
+}
+.pricing-cards .card > div ul li {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -970,8 +1021,8 @@ header nav a.active {
   letter-spacing: 0.5px;
   margin-bottom: 3px;
 }
-.pricing-cards .card ul li svg {
-  color: black;
+.pricing-cards .card > div ul li svg {
+  color: #0d0d0c;
   background: white;
   border-radius: 50%;
   padding: 2px;
@@ -979,7 +1030,7 @@ header nav a.active {
   height: 15px;
 }
 .pricing-cards .card .specific {
-  margin-top: 5px;
+  margin-top: 4px;
 }
 .pricing-cards .card .specific label {
   margin-bottom: 0px;
@@ -999,16 +1050,16 @@ header nav a.active {
 .pricing-cards .card.gold h3 span,
 .pricing-cards .card.gold ul li,
 .pricing-cards .card.gold label {
-  color: black;
+  color: #0d0d0c;
   font-weight: 600;
 }
 .pricing-cards .card.gold ul li svg {
   color: white;
-  background: black;
+  background: #0d0d0c;
 }
 .pricing-cards .card.gold .main-button,
 .pricing-cards .card.gold select {
-  background: black;
+  background: #0d0d0c;
   color: white;
   font-weight: 500;
   cursor: pointer;
@@ -1308,7 +1359,7 @@ body:has(.hero.why) .backImg {
     position: absolute;
     display: flex;
     flex-direction: column;
-    bottom: -180px;
+    bottom: -194px;
     background: var(--section-color);
     width: 100%;
     left: 0;
@@ -1443,8 +1494,22 @@ body:has(.hero.why) .backImg {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 388px) {
   .our-process {
     padding: 0;
+  }
+  header .logo {
+    font-size: 27px;
+  }
+  .main-button {
+    padding: 12px 20px;
+  }
+  .holder.four {
+    row-gap: 18px;
+  }
+  .services h2 {
+    font-size: 35px;
+    margin-top: 12px;
+    margin-bottom: 1px;
   }
 }

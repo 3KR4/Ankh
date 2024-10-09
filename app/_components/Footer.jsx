@@ -5,7 +5,10 @@ import Image from 'next/image'
 
 
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
+const whatsappNumber = "01128338382";
+const whatsappLink = `https://wa.me/20${whatsappNumber}`;
 
 function Footer() {
   return (
@@ -34,6 +37,7 @@ function Footer() {
             <Link href=''><FaFacebook/></Link>
             <Link href=''><FaInstagram/></Link>
             <Link href=''><FaLinkedin/></Link>
+            <Link href={whatsappLink} target="_blank"><FaWhatsapp/></Link>
           </ul>
         </div>
       </div>

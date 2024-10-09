@@ -39,7 +39,7 @@ export default function Home() {
           </div>
         </div>
         <div className='btns-holder'>
-          <button className='main-button'>Bock Now</button>
+          <button className='main-button'>Book Now</button>
           <Link className='main-button' href='/pricing'>View Pricing</Link>
         </div>
       </div>

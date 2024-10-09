@@ -18,7 +18,7 @@ export default function Home() {
         <h1>Our Virtual Assistance and <span>Real Estate</span> Expertise Unlocks the Key to Elevating Investors & Realtors</h1>
         <p>If your goal is to boost your leads with a committed team, then We’re the key. <br/> However, we won’t just enhance your leads; we’ll grow your business to new levels.</p>
         <div className='btns-holder'>
-          <button className='main-button'>Bock Now</button>
+          <button className='main-button'>Book Now</button>
         </div>
       </div>
 

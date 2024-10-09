@@ -20,7 +20,7 @@ export default function Home() {
         <h2>Real Estate Made Easy.</h2>
         <p>Let our cold calling experts be your KEY in closing deals.</p>
         <div className='btns-holder'>
-          <button className='main-button'>Bock Now</button>
+          <button className='main-button'>Book Now</button>
           <Link className='main-button' href='/pricing'>Learn More</Link>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function Home() {
           </div>
         </div>
         <div className='btns-holder'>
-          <button className='main-button'>Bock Now</button>
+          <button className='main-button'>Book Now</button>
           <Link className='main-button' href='/pricing'>View Pricing</Link>
         </div>
       </div>
