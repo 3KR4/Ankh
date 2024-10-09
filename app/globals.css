@@ -193,7 +193,7 @@ img {
   background: var(--section-color);
   padding: 8px 23px;
   border-radius: 21px;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 0.4px;
 }
 .main-button {
@@ -381,7 +381,7 @@ header nav a.active {
 .hero > h1 {
   margin-top: 25px;
 }
-.hero h1, .hero h2 {
+.hero > h1, .hero > h2 {
   font-size: 62px;
   line-height: 1.1;
   text-align: center;
@@ -421,9 +421,28 @@ header nav a.active {
   margin: 10px 0 3px;
 }
 .services > p {
-  font-size: 16px;
+  font-size: 17px;
   color: black;
-  max-width: 450px;
+  max-width: 421px;
+}
+.services .holder.four .box {
+  align-items: flex-start;
+  text-align: left;
+}
+.services .holder.four img {
+  background: black;
+  padding: 7px;
+  width: 43px !important;
+  height: 43px !important;
+}
+.services .holder.four h4 {
+  color: black;
+  font-weight: 700;
+  margin-top: 5px;
+}
+.services .holder.four p {
+  color: black;
+  font-weight: 600;
 }
 
 /*! ============== PROCESS ============== */
@@ -446,7 +465,7 @@ header nav a.active {
   gap: 15px;
   row-gap: 50px;
   margin: 40px auto 32px;
-  width: 85%;
+  width: 89%;
 }
 .our-process .holder .box {
   display: flex;
@@ -456,6 +475,29 @@ header nav a.active {
   gap: 10px;
   position: relative;
 }
+.our-process.process-page {
+  margin-top: 45px;
+}
+.our-process.process-page .box::before {
+  content: '2';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--main-color);
+  font-size: 345px;
+  font-weight: 900;
+  opacity: 0.1;
+  z-index: -1;
+  line-height: 0.9;
+}
+.our-process.process-page .box:first-child::before {
+  content:'1'
+}
+.our-process.process-page .box:last-child::before {
+  content:'3'
+}
+
 .our-process .holder .box img {
   width: 53px !important;
   height: 53px !important;
@@ -467,7 +509,7 @@ header nav a.active {
 }
 .our-process .holder .box p {
   font-size: 17px;
-  max-width: 348px;
+  max-width: 382px;
 }
 
 /*! ============== REVIEWS ============== */
@@ -696,6 +738,7 @@ header nav a.active {
 }
 .our-process.aboutPag h4 span {
   color: var(--main-color);
+  font-size: 24px;
 }
 
 /*! ============== WHY US ============== */ 
@@ -722,6 +765,311 @@ header nav a.active {
 .hero.why + .holder.four p {
   font-size: 20px;
   text-align: center;
+}
+
+/*! ============== FAQ ============== */
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+.faq h1.last {
+  color: #969696;
+  /* color: var(--main-color); */
+  margin-top: -12px;
+}
+.faq .hold {
+  width: 85%;
+  margin-top: 16px;
+}
+.faq .hold .box {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 3px solid var(--border-color);
+  padding: 27px 0;
+  transition: 0.3s;
+}
+.faq .hold button {
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 34px;
+  align-items: center;
+  transition: 0.3s;
+}
+.faq .hold button svg {
+  width: 30px;
+  height: 30px;
+  color: var(--paragraph-color);
+}
+.faq .hold button:hover {
+  color: var(--main-color);
+}
+.faq .hold button:hover svg {
+  color: var(--main-color);
+}
+.faq .hold .hiddin {
+  font-size: 18px;
+  color: var(--paragraph-color);
+  letter-spacing: 0.3px;
+  transform: scaleY(0);
+  height: 0;  
+  transform-origin: top center;
+}
+
+.faq .box.active {
+  gap: 15px;
+}
+.faq .box.active button {
+  color: var(--main-color);
+}
+.faq .box.active .hiddin {
+  transition: 0.35s;
+  transform: scaleY(1);
+  height: max-content;
+}
+
+/*! ============== Pricing ============== */ 
+
+.hero.pricing h1 {
+  margin-bottom: 6px;
+}
+.pricing-cards {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+  row-gap: 25px;
+  width: 100%;
+}
+.pricing-cards .card {
+  border-top: 8px solid #474747;
+  border-radius: 33px;
+  padding: 30px 34px 27px;
+  position: relative;
+}
+.pricing-cards .card::before {
+  content: '';
+  position: absolute;
+  width: 99.2%;
+  height: 99.2%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  border-radius: 28px;
+  border: 2px solid var(--border-color);
+}
+.pricing-cards .card h2 {
+  font-size: 29px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0;
+}
+.pricing-cards .card h2 span {
+  background: black;
+  border-radius: 50px;
+  color: var(--main-color);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  width: fit-content;
+  font-weight: 600;
+  padding: 2px 12px;
+  letter-spacing: 0px;
+}
+.pricing-cards .card h2 span img {
+  width: 17px !important;
+}
+.pricing-cards .card p {
+  font-size: 14px;
+  text-align: unset;
+  margin-top: -8px;
+  font-weight: 600;
+}
+.pricing-cards .card h3 {
+  font-size: 15px;
+  color: var(--paragraph-color);
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 11px 0 13px;
+}
+.pricing-cards .card h3 span {
+  font-size: 27px;
+  color: white;
+  font-weight: 500;
+  margin-top: -7px;
+}
+.pricing-cards .card .main-button {
+  background: white;
+  padding: 11px 26px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 50px;
+}
+.pricing-cards .card .main-button:hover {
+  background: var(--main-color);
+}
+.pricing-cards .card.gold .main-button:hover {
+  color: black;
+  background: white;
+}
+.pricing-cards .card hr {
+  margin: 12px 0 6px;
+  background: transparent;
+  border-bottom: 2px dotted var(--border-color);
+  height: 0;
+}
+.pricing-cards .card label  {
+  color: var(--paragraph-color);
+  margin-bottom: 6px;
+  display: flex;
+  gap: 0px;
+  position: relative;
+  align-items: center;
+}
+.pricing-cards .card .plusPrice {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--main-color);
+  border-radius: 50px;
+  color: black;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 12px;
+  letter-spacing: 0px;
+  min-width: 71px;
+  text-align: center;
+}
+.pricing-cards .card select {
+  display: block;
+  width: 100%;
+  margin: 8px 0 16px;
+  padding: 14px 12px;
+  border: none;
+  outline: none;
+  background: #7a7a79;
+  color: white;
+  border-radius: 6px;
+  font-family: 'Manrope';
+  font-weight: 400;
+}
+.pricing-cards .card ul li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+.pricing-cards .card ul li svg {
+  color: black;
+  background: white;
+  border-radius: 50%;
+  padding: 2px;
+  width: 15px;
+  height: 15px;
+}
+.pricing-cards .card .specific {
+  margin-top: 5px;
+}
+.pricing-cards .card .specific label {
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.pricing-cards .card.gold {
+  border-color: #a7a7a7;
+  background: var(--main-color);
+}
+.pricing-cards .gold::before {
+  display: none;
+}
+.pricing-cards .card.gold p,
+.pricing-cards .card.gold h2,
+.pricing-cards .card.gold h3,
+.pricing-cards .card.gold h3 span,
+.pricing-cards .card.gold ul li,
+.pricing-cards .card.gold label {
+  color: black;
+  font-weight: 600;
+}
+.pricing-cards .card.gold ul li svg {
+  color: white;
+  background: black;
+}
+.pricing-cards .card.gold .main-button,
+.pricing-cards .card.gold select {
+  background: black;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+.pricing-cards .card.gold select {
+  color: #f0f0f0;
+}
+
+/* checkbox */
+.pricing-cards .card .switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+  margin-right: -3px;
+  margin-left: -12px;
+}
+
+/* Hide default HTML checkbox */
+.pricing-cards .card .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.pricing-cards .card .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 1px solid #adb5bd;
+  transition: .4s;
+  border-radius: 30px;
+  scale: 0.7;
+}
+
+.pricing-cards .card .slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.27em;
+  bottom: 0.25em;
+  background-color: #dedede;
+  transition: .4s;
+}
+
+.pricing-cards .card input:checked + .slider {
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.pricing-cards .card input:checked + .slider:before {
+  transform: translateX(1.4em);
+  background-color: #0d0d0c;
 }
 
 /*! ============== Footer ============== */
@@ -783,8 +1131,12 @@ footer .banner {
   width: 100%;
   height: fit-content;
   transform: translateX(-3.5%);
+  cursor: auto;
 }
-
+body:has(.hero.why) .backImg {
+  width: 800px;
+  height: 2400px;
+}
 
 @media(max-width:1600px) {
   .services {
@@ -843,7 +1195,7 @@ footer .banner {
   header {
     width: 71%;
   }
-  .hero h1, .hero h2 {
+  .hero > h1, .hero > h2 {
     font-size: 66px;
   }
   .our-process {
@@ -870,11 +1222,14 @@ footer .banner {
   body {
     padding-top: 150px;
   }
+  body svg.backImg {
+    width: 100%;
+  }
   header {
     width: 94%;
     gap: 0;
   }
-  .hero h1, .hero h2 {
+  .hero > h1, .hero > h2 {
     font-size: 56px;
   }
   .holder.four {
@@ -914,6 +1269,9 @@ footer .banner {
   }
   footer .banner {
     margin-bottom: -54px;
+  }
+  .faq .hold {
+    width: 100%;
   }
 }
 
@@ -969,7 +1327,7 @@ footer .banner {
   .hero h1 {
     margin-top: 26px;
   }
-  .hero h1, .hero h2 {
+  .hero > h1, .hero > h2 {
     margin-bottom: 0px;
     font-size: 26px;
     letter-spacing: -0.3px;

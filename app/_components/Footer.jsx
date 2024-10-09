@@ -14,9 +14,9 @@ function Footer() {
         <div>
           <h4 className='title'>Resources:</h4>
           <ul>
-            <Link href='/apout-us'>apout us</Link>
+            <Link href='/about'>apout us</Link>
             <Link href='/pricing'>pricing</Link>
-            <Link href='/why-us'>why-us</Link>
+            <Link href='/why-us'>why us</Link>
             <Link href='/process'>process</Link>
           </ul>
         </div>

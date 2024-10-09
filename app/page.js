@@ -46,6 +46,10 @@ export default function Home() {
             <p>We acquire your list. We filter the list. We nurture the leads. We deliver to you hot leads awaiting closure.</p>
           </div>
         </div>
+        <div className='btns-holder'>
+          <button className='main-button'>Bock Now</button>
+          <Link className='main-button' href='/pricing'>View Pricing</Link>
+        </div>
       </div>
       <div className='reviews container'>
         <span className='ico'>“</span>
