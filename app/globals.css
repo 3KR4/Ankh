@@ -321,6 +321,7 @@ header {
   border: 4px solid #1c1b1f;
   background: #101010eb;
   width: max-content;
+  overflow: unset !important;
 }
 header .logo {
   display: flex;
