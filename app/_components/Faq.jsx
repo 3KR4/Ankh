@@ -24,10 +24,10 @@ const faq = [
 function Faq() {
   return (
     <div className='faq container'>
-      <span className='hiddens'>Ankh’s Approach</span>
-      <h1>Frequently Asked</h1>
-      <h1 className='last'>Questions</h1>
-      <div className='hold'>
+      <span className='hiddens' data-aos="zoom-in-up">Ankh’s Approach</span>
+      <h1 data-aos="zoom-in-up">Frequently Asked</h1>
+      <h1 className='last' data-aos="zoom-in-up">Questions</h1>
+      <div className='hold' data-aos="fade-up-right">
         {faq.map((x) => <FaqBox data={x}/>)}
       </div>
     </div>

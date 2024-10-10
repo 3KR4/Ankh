@@ -26,7 +26,10 @@ body.dark {
 }
 
 body {
-  padding-top: 155px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 180px;
   font-family: "Manrope", sans-serif;
   background-color: var(--body-color) !important;
 }  
@@ -184,7 +187,7 @@ img {
   font-size: 18px;
   font-weight: 700;
   border-radius: 9px;
-  transition: 0.3s;
+  transition: background 0.3s, opacity 1.2s, transform 1.2s !important;
   font-family: 'Manrope';
 }
 a.main-button:hover {
@@ -257,9 +260,7 @@ svg.backImg {
 header {
   position: fixed;
   padding: 10px 13px 10px 22px;
-  left: 50%;
-  top: 30px;
-  transform: translateX(-50%);
+  top: 35px;
   display: flex;
   align-items: center;
   gap: 33px;
@@ -353,6 +354,7 @@ header nav a.active {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 20px 0 30px;
 }
 .hero.why p {
   margin-top: 22px;
@@ -364,12 +366,15 @@ header nav a.active {
   margin-top: 25px;
 }
 .hero > h1, .hero > h2 {
-  font-size: 62px;
+  font-size: 73px;
   line-height: 1.1;
   text-align: center;
   font-weight: 700;
   margin-bottom: -8px;
   letter-spacing: 1.7px;
+}
+.hero.home > h1, .hero.home > h2 {
+  font-size: 102px;
 }
 .hero h2 {
   margin-bottom: 5px;
@@ -390,7 +395,8 @@ header nav a.active {
   padding: 56px 63px;
   border-radius: 28px;
   width: 76%;
-  margin: 100px auto 40px;
+  margin: 93px auto 40px;
+  overflow: hidden;
 }
 .services .hiddens {
   color: #e0be40 !important;
@@ -434,6 +440,7 @@ header nav a.active {
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
+  overflow: hidden;
 }
 
 .our-process > p {
@@ -501,6 +508,7 @@ header nav a.active {
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 }
 .reviews .ico {
   color: white;
@@ -1130,6 +1138,7 @@ footer {
   padding: 50px 0;
   background: linear-gradient(180deg, rgba(13, 13, 12, 1) 1%, rgba(38, 38, 38, 1) 108%);
   overflow: hidden;
+  width: 100%;
 }
 footer .container {
   display: flex;
@@ -1149,8 +1158,7 @@ footer .container div:first-child ul {
 }
 footer .container div:nth-child(2) {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 47%;
 }
 footer .container div h4 {
   font-size: 20px;
@@ -1210,6 +1218,9 @@ body:has(.hero.why) .backImg {
   .our-process .holder .box p {
     max-width: 378px;
   }
+  .hero > h1, .hero > h2 {
+    font-size: 78px !important;
+  }
 }
 
 @media(max-width:1500px) {
@@ -1247,7 +1258,7 @@ body:has(.hero.why) .backImg {
     width: 71%;
   }
   .hero > h1, .hero > h2 {
-    font-size: 66px;
+    font-size: 66px !important;
   }
   .our-process {
     width: 97%;
@@ -1278,10 +1289,11 @@ body:has(.hero.why) .backImg {
   }
   header {
     width: 94%;
+    top: 28px;
     gap: 0;
   }
   .hero > h1, .hero > h2 {
-    font-size: 56px;
+    font-size: 56px !important;
   }
   .holder.four {
     grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
@@ -1375,12 +1387,16 @@ body:has(.hero.why) .backImg {
     opacity: 1;
     visibility: visible;
   }
+  .hiddens {
+    font-size: 15px;
+  }
+  
   .hero h1 {
     margin-top: 26px;
   }
   .hero > h1, .hero > h2 {
     margin-bottom: 0px;
-    font-size: 26px;
+    font-size: 29px !important;
     letter-spacing: -0.3px;
     font-weight: 600;
   } 
@@ -1388,7 +1404,8 @@ body:has(.hero.why) .backImg {
     font-size: 13px;
     text-align: center;
     margin-top: 16px;
-    max-width: 72%;
+    max-width: 94%;
+
   }
   .btns-holder {
     flex-direction: column;

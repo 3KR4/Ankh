@@ -20,7 +20,7 @@ function Header() {
   }
 
   return (
-    <header>
+    <header data-aos="fade-down">
       <Link href='/' className='logo'>
         <Image src='/logo.png' alt="logo" fill></Image>
         <div className='title-logo'><h1>AN</h1><h1>KH.</h1></div>

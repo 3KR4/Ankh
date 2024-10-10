@@ -65,9 +65,9 @@ export default function Pricing() {
   return (
     <>
       <div className="hero pricing container">
-        <span className='hiddens'>Simple Pricing</span>
-        <h1>Different Plans <br/> Adjusted for your Needs</h1>
-        <p>Fully flexible and transparent. No surprises.</p>
+        <span className='hiddens' data-aos="zoom-in-up">Simple Pricing</span>
+        <h1 data-aos="zoom-in-up">Different Plans <br/> Adjusted for your Needs</h1>
+        <p data-aos="zoom-in-up">Fully flexible and transparent. No surprises.</p>
         <div className="pricing-cards">
           {plans.map((plan, index) => (
             <PlanCard key={index} plan={plan} />
