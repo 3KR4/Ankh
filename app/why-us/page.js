@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 
 import { AllContext } from '../Context'
 import Access from '../_components/Access'
+import BookBtn from '../_components/BookBtn'
 import { } from 'lucide-react'
 
 import Link from 'next/link'
@@ -18,7 +19,7 @@ export default function Home() {
         <h1 data-aos="zoom-in-up">Our Virtual Assistance and <span>Real Estate</span> Expertise Unlocks the Key to Elevating Investors & Realtors</h1>
         <p data-aos="zoom-in-up">If your goal is to boost your leads with a committed team, then We’re the key. <br/> However, we won’t just enhance your leads; we’ll grow your business to new levels.</p>
         <div className='btns-holder' data-aos="zoom-in-up">
-          <button className='main-button'>Book Now</button>
+        <BookBtn />
         </div>
       </div>
 

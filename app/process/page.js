@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 
 import { AllContext } from '../Context'
 import Access from '../_components/Access'
+import BookBtn from '../_components/BookBtn'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -39,7 +40,7 @@ export default function Home() {
           </div>
         </div>
         <div className='btns-holder' data-aos="zoom-in-up">
-          <button className='main-button'>Book Now</button>
+        <BookBtn />
           <Link className='main-button' href='/pricing'>View Pricing</Link>
         </div>
       </div>

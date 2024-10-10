@@ -33,10 +33,12 @@ body {
   font-family: "Manrope", sans-serif;
   background-color: var(--body-color) !important;
 }  
-body.ar > * {
-  direction: rtl;
+body > * {
+  overflow: hidden;
 }
-
+body:has(.calendly-container.active) {
+  overflow: hidden;
+}
 .App {
   display: flex;
   gap: 10px;
@@ -253,6 +255,54 @@ svg.backImg {
   top: -30px;
   z-index: -1;
   left: -52px;
+}
+
+.calendly-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -2;
+  display: none;
+  justify-content: center;
+  gap: 10px;
+}
+.calendly-container.active {
+  display: flex;
+  z-index: 51;
+}
+.calendly-container .hold {
+  opacity: 0;
+  scale: 0.6;
+  width: 100%;
+  transition: 0.3s;
+}
+.calendly-container.active .hold {
+  opacity: 1;
+  scale: 1;
+}
+.calendly-container .close-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  z-index: 100;
+  transform: translate(-32px, 71px);
+}
+.calendly-container .close-btn:hover {
+  background: #ce3636;
+  padding: 3px;
+}
+.calendly-container.active {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .calendly-container .calendly-inline-widget {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 /*! ============== HEADER ============== */
@@ -1509,6 +1559,22 @@ body:has(.hero.why) .backImg {
     font-size: 16px;
     min-width: 100%;
   }
+  .faq .hold button {
+    font-size: 23px;
+    text-align: left;
+  }
+  .calendly-container .hold {
+    height: 86%;
+  }
+  .calendly-container {
+    align-items: center;
+  }
+  .calendly-container .close-btn {
+    position: absolute;
+    transform: translate(0, 0);
+    right: 15px;
+    top: 15px;
+  }
 }
 
 @media (max-width: 388px) {
@@ -1528,5 +1594,8 @@ body:has(.hero.why) .backImg {
     font-size: 35px;
     margin-top: 12px;
     margin-bottom: 1px;
+  }
+  .mission .left h1 {
+    font-size: 28px;
   }
 }

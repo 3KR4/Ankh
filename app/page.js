@@ -4,7 +4,8 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 import { AllContext } from './Context'
 import Services from './_components/Services'
 import Access from './_components/Access'
-import { CornerDownRight } from 'lucide-react'
+import BookBtn from './_components/BookBtn'
+import {  } from 'lucide-react'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -26,7 +27,7 @@ export default function Home() {
         <h2>Real Estate Made Easy.</h2>
         <p>Let our cold calling experts be your KEY in closing deals.</p>
         <div className='btns-holder'>
-          <button className='main-button'>Book Now</button>
+          <BookBtn />
           <Link className='main-button' href='/pricing'>Learn More</Link>
         </div>
       </div>
@@ -54,7 +55,7 @@ export default function Home() {
           </div>
         </div>
         <div className='btns-holder' >
-          <button className='main-button' data-aos="zoom-in-up">Book Now</button>
+        <BookBtn aos={true}/>
           <Link className='main-button' href='/pricing' data-aos="zoom-in-up">View Pricing</Link>
         </div>
       </div>

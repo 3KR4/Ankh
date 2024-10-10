@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation'; // Updated import
-
+import BookBtn from './BookBtn'
 function Header() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname(); // Using usePathname from next/navigation
@@ -40,7 +40,7 @@ function Header() {
         </Link>
       </nav>
       <div>
-        <button className='main-button'>Book Now</button>
+      <BookBtn />
         <label className="hamburger">
           <input type="checkbox"/>
           <svg viewBox="0 0 32 32">
