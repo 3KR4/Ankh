@@ -33,12 +33,27 @@ const PlanCard = ({ plan }) => {
     }
   };
 
+  const handlePay = () => {
+    let link = selectedOption.links.default;
+  
+    if (plan.title === 'Platinum' && selectedExtraPrice === 'dataTeam') {
+      link = selectedOption.links.dataTeam;
+    }
+  
+    if (plan.title !== 'Platinum') {
+      link = selectedOption.link;
+    }
+  
+    window.location.href = link;
+  };
+  
+
   return (
     <div className={`card ${plan.title === 'Gold' && 'gold'}`} data-aos={`zoom-in-${plan.title == 'Silver' ? 'right' : plan.title == 'Titanium' ? 'left' : 'up' }`}>
       <h2>{plan.title} {plan.title === 'Gold' && <span><Image src='/image/fire.png' fill /> Popular</span>}</h2>
       <p>{plan.details}</p>
       <h3>Total Price: <br/> <span>${calculateFinalPrice()}</span> billed monthly</h3>
-      <button className='main-button'>Get Started</button>
+      <button className='main-button' onClick={handlePay}>Get Started</button>
 
       <hr />
 

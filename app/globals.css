@@ -407,6 +407,10 @@ header nav a.active {
   flex-direction: column;
   margin: 20px 0 30px;
 }
+.hero.why {
+  margin-bottom: 0;
+  padding-bottom: 70px;
+}
 .hero.why p {
   margin-top: 22px;
 }
@@ -492,6 +496,8 @@ header nav a.active {
   align-items: center;
   margin-top: 100px;
   overflow: hidden;
+  padding-bottom: 80px;
+
 }
 
 .our-process > p {
@@ -555,7 +561,7 @@ header nav a.active {
 /*! ============== REVIEWS ============== */
 
 .reviews {
-  margin-top: 100px;
+  margin-top: 30px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -660,6 +666,10 @@ header nav a.active {
   color: white;
   font-weight: 500;
 }
+.access .main-button:hover {
+  color: #0d0d0c !important;
+  background: white !important;
+}
 
 /*! ============== MISSION ============== */
 
@@ -670,7 +680,9 @@ header nav a.active {
   padding: 0 80px;
 }
 .mission .left {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .mission .left h1 {
   font-size: 57px;
@@ -761,6 +773,7 @@ header nav a.active {
   background: var(--body-color);
 }
 .about h1 {
+  text-align: left;
   margin: 13px 0px 8px;
 }
 .about P {
@@ -785,7 +798,7 @@ header nav a.active {
 /*! ============== WHY US ============== */ 
 
 .hero.why + .holder.four {
-  margin-top: 90px;
+  margin-top: 60px;
   grid-template-columns: repeat(auto-fill, minmax(357px, 1fr));
 }
 .hero.why + .holder.four .box {
@@ -860,12 +873,19 @@ header nav a.active {
   height: 0;  
   transform-origin: top center;
 }
-
+.faq .box {
+  transition: 0.3s;
+  height: 96px;
+}
 .faq .box.active {
   gap: 15px;
+  height: max-content;
 }
 .faq .box.active button {
   color: var(--main-color);
+}
+.faq .box.active svg {
+  transform: rotate(45deg);
 }
 .faq .box.active .hiddin {
   transition: 0.35s;
@@ -1202,11 +1222,6 @@ footer .container div {
   flex-direction: column;
   gap: 6px;
 }
-footer .container div:first-child ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  width: 170px;
-}
 footer .container div:nth-child(2) {
   position: absolute;
   left: 47%;
@@ -1218,8 +1233,11 @@ footer .container div h4 {
 footer .container div ul {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 10px;
   margin-top: 5px;
+}
+footer .container a {
+  transition: 0.3s;
 }
 footer .container .social ul {
   flex-direction: row;
@@ -1228,6 +1246,10 @@ footer .container .social ul {
 footer .container .social svg {
   width: 28px;
   height: 28px;
+}
+footer .container a:hover,
+footer .container svg:hover {
+  color: var(--main-color);
 }
 footer p.copyRight {
   font-size: 16px;
@@ -1359,6 +1381,7 @@ body:has(.hero.why) .backImg {
     max-width: 94%;
   }
   .about h1 {
+    text-align: center;
     font-size: 50px;
     font-weight: 700;
     margin: 8px 0 11px;
@@ -1380,6 +1403,9 @@ body:has(.hero.why) .backImg {
   }
   .mission .right .hold p {
     margin: 0 auto;
+  }
+  .mission .left {
+    align-items: center;
   }
   footer .banner {
     margin-bottom: -54px;

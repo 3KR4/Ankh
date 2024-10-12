@@ -1,24 +1,14 @@
 'use client'
 import React, { useContext, useEffect, useState, useRef } from 'react'
 
-import { AllContext } from './Context'
 import Services from './_components/Services'
 import Access from './_components/Access'
 import BookBtn from './_components/BookBtn'
-import {  } from 'lucide-react'
 
 import Link from 'next/link'
 import Image from 'next/image'
 
-import 'aos/dist/aos.css'; // AOS styles
-import AOS from 'aos';
-
-
 export default function Home() {
-  const { lang, Departments, screenSize } = useContext(AllContext)
-
-
-
   return (
     <>
       <div className="hero home container" data-aos="zoom-in-up">

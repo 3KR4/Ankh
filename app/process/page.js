@@ -14,7 +14,6 @@ import Faq from '../_components/Faq'
 
 
 export default function Home() {
-  const { lang, Departments, screenSize } = useContext(AllContext)
 
   return (
     <>

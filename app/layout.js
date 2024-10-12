@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       offset: 200,
       duration: 1400,
       delay: 0,
-      once: true,
+      once: false,
     });
   }, []);
 
