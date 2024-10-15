@@ -1,17 +1,17 @@
-'use client'
-import React, { useContext, useEffect, useState, useRef } from 'react'
+export const metadata = {
+  title: 'ANKH - Process',
+  description: 'We shape our services around your goals and needs.',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
-import { AllContext } from '../Context'
 import Access from '../_components/Access'
 import BookBtn from '../_components/BookBtn'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import Services from '../_components/Services'
-
 import Faq from '../_components/Faq'
-
-
 
 export default function Home() {
 

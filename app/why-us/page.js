@@ -1,16 +1,16 @@
-'use client'
-import React, { useContext, useEffect, useState, useRef } from 'react'
+export const metadata = {
+  title: 'ANKH - Why Us',
+  description: 'Our Virtual Assistance and Real Estate Expertise Unlocks the Key to Elevating Investors & Realtors',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
-import { AllContext } from '../Context'
 import Access from '../_components/Access'
 import BookBtn from '../_components/BookBtn'
-import { } from 'lucide-react'
-
-import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Home() {
-  const { lang, Departments, screenSize } = useContext(AllContext)
 
   return (
     <>

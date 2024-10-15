@@ -1,11 +1,13 @@
-'use client'
-import React, { useContext, useEffect, useState, useRef } from 'react'
+export const metadata = {
+  title: 'ANKH - Pricing',
+  description: 'Different Plans Adjusted for your Needs',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
 import Access from '../_components/Access'
 import Faq from '../_components/Faq'
-
-import Link from 'next/link'
-import Image from 'next/image'
 import PlanCard from '../_components/PlanCard';
 
 const plans = [

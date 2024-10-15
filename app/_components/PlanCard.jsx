@@ -1,10 +1,11 @@
+'use client'
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 import Image from 'next/image';
 
 const PlanCard = ({ plan }) => {
   const [menu, setMenu] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(plan.options[3]); // Default to the 11+ agent option
+  const [selectedOption, setSelectedOption] = useState(plan.options[0]); // Default to the 11+ agent option
   const [selectedExtraPrice, setSelectedExtraPrice] = useState(
     plan.title === 'Titanium' ? 'dataAndAcquisition' : plan.title === 'Platinum' ? 'acquisitionTeam' : null
   );

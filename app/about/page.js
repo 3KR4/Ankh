@@ -1,15 +1,17 @@
-'use client'
-import React, { useContext, useEffect, useState, useRef } from 'react'
-
-import { AllContext } from '../Context'
 import Access from '../_components/Access'
-import { CornerDownRight } from 'lucide-react'
 
 import Link from 'next/link'
 import Image from 'next/image'
 
+export const metadata = {
+  title: 'ANKH - About Us',
+  description: 'Guiding the Future of Real Estate with Purpose and Integrity',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
+
 export default function About() {
-  const { lang, Departments, screenSize } = useContext(AllContext)
 
   return (
     <>

@@ -1,10 +1,14 @@
-'use client'
-import React, { useContext, useEffect, useState, useRef } from 'react'
+export const metadata = {
+  title: 'ANKH - Home Page',
+  description: 'Let our cold calling experts be your KEY in closing deals',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
 import Services from './_components/Services'
 import Access from './_components/Access'
 import BookBtn from './_components/BookBtn'
-
 import Link from 'next/link'
 import Image from 'next/image'
 
