@@ -187,7 +187,7 @@ const Checkout = () => {
 
         <div className='bottom'>
           <button className='main-button' type='submit'>Checkout</button>
-          <h3>Total Cost <br />${calculateSubtotal()}/Mo</h3>
+          <h3>Total Cost ${calculateSubtotal()}/Mo</h3>
         </div>
       </div>
 

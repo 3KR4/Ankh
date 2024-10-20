@@ -1529,7 +1529,7 @@ header nav a.active {
   font-size: 40px;
   color: var(--main-color);
   font-weight: 700;
-  margin: 8px 0px -12px 5px; 
+  margin: 12px 0px -12px 5px; 
 }
 .checkout .big-holder {
   display: grid;
@@ -1787,6 +1787,9 @@ body:has(.hero.why) .backImg {
   .hero > h1, .hero > h2 {
     font-size: 78px !important;
   }
+  .checkout {
+    width: 90%;
+  }
 }
 
 @media(max-width:1500px) {
@@ -1837,6 +1840,18 @@ body:has(.hero.why) .backImg {
   }
   .mission .left h1{
     font-size: 54px;
+  }
+  .checkout-form {
+    flex-direction: column;
+  }
+  .checkout-form form {
+    width: 100%;
+  }
+  .checkout .big-holder {
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  }
+  .checkout .list {
+    width: 66%;
   }
 }
 
@@ -1905,6 +1920,15 @@ body:has(.hero.why) .backImg {
   }
   .faq .hold {
     width: 100%;
+  }
+  .checkout .list {
+    width: 100%;
+  }
+  .checkout .big-holder {
+    grid-template-columns: repeat(auto-fill, minmax(236px, 1fr));
+  }
+  footer .container div:nth-child(2) {
+    left: 43%;
   }
 }
 
@@ -2094,6 +2118,28 @@ body:has(.hero.why) .backImg {
     transform: translate(0, 0);
     right: 15px;
     top: 15px;
+  }
+  .checkout-form .rowHolder {
+    flex-direction: column-reverse;
+  }
+  .checkout .big-holder .holder:nth-child(2) {
+    border-top: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+    border-right: none;
+    border-left: none;
+  }
+  .checkout .list #allSelected ul li {
+    padding: 6px 4px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .checkout .list .bottom {
+    flex-direction: column-reverse;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .checkout .list .bottom .main-button{
+    width: 100%;
   }
 }
 
