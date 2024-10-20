@@ -1,11 +1,11 @@
 'use client'
 import React, { useContext } from 'react'
-import { AllContext } from '../Context'
+import { usePlanContext } from '../Context'
 import { InlineWidget } from 'react-calendly'
 import { X } from 'lucide-react'
 
 export default function Calendly() {
-  const { bookMenu, setBookMenu } = useContext(AllContext)
+  const { bookMenu, setBookMenu } = usePlanContext()
 
   return (
     <div className={`calendly-container ${bookMenu && 'active'}`}>

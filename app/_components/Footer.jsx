@@ -11,7 +11,7 @@ function Footer() {
     <footer >
       <div className='container'>
         <div data-aos="fade-down-right">
-          <h4 className='title'>Resources:</h4>
+          <h4 className='title'>Resources</h4>
           <ul>
             <Link href='/about'>about us</Link>
             <Link href='/pricing'>pricing</Link>
@@ -20,18 +20,18 @@ function Footer() {
           </ul>
         </div>
         <div data-aos="fade-down">
-          <h4 className='title'>Legal:</h4>
+          <h4 className='title'>Legal</h4>
           <ul>
             <Link href=''>terms & condition</Link>
             <Link href=''>privacy policy</Link>
           </ul>
         </div>
         <div className='social' data-aos="fade-down-left">
-          <h4 className='title'>Follow Us:</h4>
+          <h4 className='title'>Follow Us</h4>
           <ul>
-            <Link href=''><FaFacebook/></Link>
-            <Link href=''><FaInstagram/></Link>
-            <Link href=''><FaLinkedin/></Link>
+            <Link href='https://www.facebook.com/profile.php?id=61562576477258&mibextid=LQQJ4d'><FaFacebook/></Link>
+            <Link href='https://www.instagram.com/ankhcallcenter?igsh=cWVzYWE5aDJyM3Ix'><FaInstagram/></Link>
+            <Link href='https://www.linkedin.com/company/ankhcallcenter/'><FaLinkedin/></Link>
             <Link href='mailto:mouhamedmahmoud820@gmail.com'><Mails/></Link>
           </ul>
         </div>

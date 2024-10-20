@@ -1,9 +1,9 @@
 'use client'
 import React, { useContext } from 'react'
-import { AllContext } from '../Context'
+import { usePlanContext } from '../Context'
 
 export default function BookBtn({ aos }) {
-  const { setBookMenu } = useContext(AllContext)
+  const { setBookMenu } = usePlanContext();
 
   return (
     <>

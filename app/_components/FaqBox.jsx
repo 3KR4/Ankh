@@ -5,8 +5,6 @@ import { Plus } from 'lucide-react'
 
 function FaqBox({data}) {
   const [ clickd, setIsClicked ] = useState(false)
-  
-  console.log(data);
   return (
     <div className={`box ${clickd && 'active'}`}>
       <button onClick={() => {
