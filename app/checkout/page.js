@@ -43,7 +43,7 @@ const Checkout = () => {
     
     // Add the price of options
     if (selectedPlan.option) {
-      subtotal += selectedPlan.option.discount || 0;
+      subtotal -= selectedPlan.option.discount || 0;
     }
 
     // Add the price of each feature
@@ -151,7 +151,7 @@ const Checkout = () => {
         {Object.entries(selectedPlan).map(([key, value], index) => (
           (key === 'option' && value.name) || (key === 'features' && Object.values(value).some(v => v)) || (key === 'extraPrice' && Object.values(value).some(v => v)) ? (
             <div key={index}>
-              <h4>{key.toUpperCase()}:</h4>  {/* Heading for each section */}
+              <h4>{key == 'option' ? 'Agent Package' : key == 'features' ? 'Resources' : 'Features'}:</h4>  {/* Heading for each section */}
               <ul>
                 {/* Render the options */}
                 {key === 'option' && value.name && (
