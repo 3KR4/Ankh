@@ -421,7 +421,7 @@ pre.placeHolder {
   z-index: 1;
   top: 17px;
   left: 19px;
-  font-size: 13.2px;
+  font-size: 13.4px;
   font-weight: 500;
   transition: 0.3s;
 }
@@ -474,7 +474,6 @@ pre.placeHolder {
 .inputHolder.notvalid:has(input:focus) h6.placeHolder,
 .inputHolder.notvalid:has(textarea:focus) h6.placeHolder {
   color: #c81d1d !important;
-  letter-spacing: 0.7px;
   font-weight: 600;
 }
 .inputHolder input::placeholder,
@@ -539,7 +538,8 @@ form button.remove:hover {
   resize: none;
   border: none;
   font-size: 13px;
-  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-weight: 300;
   font-family: 'Manrope';
   color: white;
   transition: padding 0.3s;
@@ -1328,9 +1328,14 @@ header nav a.active {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  font-size: 14px;
+}
+.checkout .select .btn {
+  height: 54px;
 }
  .select .btn img {
-  width: 15px !important;
+  width: 17px !important;
+  height: 17px !important;
   transition: 0.3s;
 }
  .select:has(.menu.active) img {
@@ -1544,6 +1549,11 @@ header nav a.active {
   padding-bottom: 70px;
 }
 .checkout-form form {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+}
+.checkout-form form .right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -1684,16 +1694,134 @@ header nav a.active {
   color: black;
   background: white;
 }
+
 .errors-holder {
   margin-top: 8px;
 }
 .errors-holder p {
-  font-size: 17px;
+  font-size: 15px;
   margin-left: 15px;
-  margin-bottom: 3px;
+  margin-bottom: -9px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.checkout p.error {
+  color: #ff2020;
+  font-size: 15px;
+  margin-left: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: -9px !important; 
+}
+.checkout p.error svg,
+.errors-holder p svg {
+  color: #ff2020;    
+  width: 15px;
+}
+.stripeForm {
+
+}
+.stripeForm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background: #ffffff00;
+  backdrop-filter: blur(7px);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+.stripeForm.active {
+  background: #ffffffd6;
+  opacity: 1;
+  visibility: visible;
+  z-index: 100;
+}
+body:has(.stripeForm.active) {
+  overflow: hidden;
+}
+.stripeForm .StripeElement {
+  width: 580px;
+  max-width: 100%;
+}
+.Label {
+  color: white !important;
+  margin-bottom: 8px !important;
+  font-family: sans-serif !important;
+  letter-spacing: 0.5px !important;
+}
+.stripeForm .x {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: black;
+  padding: 1px;
+}
+.stripeForm .x:hover {
+  color: white;
+  padding: 4px;
+  background: #ff2d2d;
+}
+.stripeForm .hold {
+  display: flex;
+  flex-direction: column;
+}
+.stripeForm .main-button {
+  padding: 12px;
+  width: 100%;
+  align-self: center;
+  margin-top: 20px;
+  color: #ffffff;
+  font-weight: 600;
+}
+.stripeForm .main-button:hover {
+  background: #000000d9;
+  color: var(--main-color);
 }
 
+
+/*! ============== payment-confirm ============== */
+
+body:has(.hero.payment) > svg {
+  display: none;
+}
+.hero.payment img {
+  position: relative !important;
+  width: 205px !important;
+  height: 189px !important;
+  color: var(--main-color);
+  margin-bottom: -15px;
+}
+.hero.payment > h1 {
+  font-size: 70px;
+  color: var(--main-color);
+}
+.hero.payment > h2 {
+  font-size: 55px !important;
+  margin-top: 13px;
+  margin-bottom: 3px;
+  color: white;
+}
+.hero.payment {
+  
+}
 
 /*! ============== Footer ============== */
 

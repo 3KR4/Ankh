@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { usePlanContext } from '../Context';
+import { CircleAlert } from 'lucide-react';
 
 const Flexible_Plan = () => {
   const { selectedPlan, setSelectedPlan, validationMSg, handleErrorMsg } = usePlanContext();
@@ -147,7 +148,7 @@ const Flexible_Plan = () => {
       </div>
       <div className='errors-holder'>
         {validationMSg.map((msg, index) => (
-          <p key={index} style={{ color: 'red' }}>{msg}</p>
+          <p key={index} style={{ color: 'red' }}><CircleAlert /> {msg}</p>
         ))}
       </div>
     </>

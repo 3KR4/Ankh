@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.8.1",
+    "@stripe/stripe-js": "^4.8.0",
     "aos": "^2.3.4",
     "lucide": "^0.433.0",
     "lucide-react": "^0.437.0",
@@ -16,12 +18,16 @@
     "react": "^18",
     "react-calendly": "^4.3.1",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.2",
     "react-icons": "^5.3.0",
     "resend": "^4.0.0",
-    "react-hook-form": "^7.51.2"
+    "stripe": "13.2.0"
   },
   "devDependencies": {
+    "@types/node": "22.7.7",
+    "@types/react": "18.3.11",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.6.3"
   }
 }

@@ -11,6 +11,7 @@ export const AllProvider = ({ children }) => {
   const [ bookMenu, setBookMenu ] = useState(false)
 
   const [ validationMSg, setValidationMSg ] = useState([])
+  const [ paymentAmount, setPaymentAmount ] = useState()
 
   const handleErrorMsg = (msg, condition) => {
     if (condition && !validationMSg.includes(msg)) {
@@ -28,6 +29,12 @@ export const AllProvider = ({ children }) => {
     option: {},
     extraPrice: [],
   });
+  const [clientInfo, setClientInfo] = useState({
+    name: '',
+    email: '',
+    state: '',
+  });
+
 
   useEffect(() => {
     // Retrieve the plan from localStorage
@@ -39,7 +46,7 @@ export const AllProvider = ({ children }) => {
 
 
   return (
-    <PlanContext.Provider value={{ bookMenu, setBookMenu, selectedPlan, setSelectedPlan, validationMSg, setValidationMSg, handleErrorMsg }}>
+    <PlanContext.Provider value={{ bookMenu, setBookMenu, selectedPlan, setSelectedPlan, clientInfo, setClientInfo, validationMSg, setValidationMSg, handleErrorMsg, paymentAmount, setPaymentAmount }}>
       {children}
     </PlanContext.Provider>
   );
