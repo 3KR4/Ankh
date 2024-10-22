@@ -23,6 +23,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true)
 
     if (!stripe || !elements) {
       return;
@@ -70,6 +71,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
     }
+    setLoading(false);
   };
 
   const sendEmail = async () => {
@@ -99,7 +101,13 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
     <form onSubmit={handleSubmit} className={`stripeForm menu ${openPay && 'active'}`}>
       <div className='hold'>
         <PaymentElement />
-        <button className='main-button'>Submit</button>
+        <button className='main-button' disabled={loading}>
+          {loading ? (
+            <div className="lds-dual-ring"></div>
+          ) : (
+            'Submit'
+          )}
+        </button>
       </div>
       <X className='x' onClick={()=> setOpenPay(false)}/>
     </form>

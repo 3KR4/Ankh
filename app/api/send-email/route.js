@@ -7,14 +7,43 @@ export async function POST(Request) {
   try {
     const { fullName, email, state, planName, option, planFeatures, planExtraPrice, totalprice } = await Request.json();
 
-    const data = await resend.emails.send({
+    // Send email to your company
+    const dataForCompany = await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "mouhamedmahmoud820@gmail.com",
-      subject: "New Payment From Ankh",
-      react: EmailTemplate({ fullName, email, state, planName, option, planFeatures, planExtraPrice, totalprice }),
+      to: ["mouhamedmahmoud820@gmail.com"], // Company email
+      subject: "New Purchase",
+      react: EmailTemplate({
+        fullName,
+        email,
+        state,
+        planName,
+        option,
+        planFeatures,
+        planExtraPrice,
+        totalprice,
+        recipientType: "company", // Pass recipient type for company
+      }),
     });
 
-    return new Response(JSON.stringify(data), { status: 200 });
+    // Send email to the client
+    const dataForClient = await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: ["mouhamedmahmoud820@gmail.com"], // Client's email
+      subject: "Payment Successful!",
+      react: EmailTemplate({
+        fullName,
+        email,
+        state,
+        planName,
+        option,
+        planFeatures,
+        planExtraPrice,
+        totalprice,
+        recipientType: "client", // Pass recipient type for client
+      }),
+    });
+
+    return new Response(JSON.stringify({ dataForCompany, dataForClient }), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
