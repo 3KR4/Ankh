@@ -1,13 +1,25 @@
+'use client'
 import { X } from 'lucide-react'
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
 import { useState } from 'react';
+import { usePlanContext } from '../Context';
 
 const CheckoutForm = ({openPay, setOpenPay, amount}) => {
+  const { clientInfo, selectedPlan } = usePlanContext();
+
+  const { name:fullName, email, state } = clientInfo;
+  const { planName, option, features, extraPrice } = selectedPlan;
+
+  const planFeatures = Object.values(features).map(feature => feature.name);
+  const planExtraPrice = extraPrice.map(extra => extra.name);
+
   const stripe = useStripe();
   const elements = useElements();
 
   const [loading, setLoading] = useState(false)
   const [errormessage, setErrorMessage] = useState()
+
+  let totalprice = amount()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,11 +71,29 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       // site first to authorize the payment, then redirected to the `return_url`.
     }
   };
+
   const sendEmail = async () => {
-    const res = await fetch('/api/send-email', {
+    await fetch('/api/send-email', {
       method: 'POST',
-    });
+      headers: {
+        'Content-Type': 'application/json', // Added header
+      },
+      body: JSON.stringify({
+        fullName,
+        email,
+        state,
+        planName,
+        option,
+        planFeatures,
+        planExtraPrice,
+        totalprice
+      }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error sending email:', error));
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className={`stripeForm menu ${openPay && 'active'}`}>
