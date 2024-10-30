@@ -1,4 +1,4 @@
-export default function EmailTemplate({ fullName, email, state, planName, option, planFeatures, planExtraPrice, totalprice, recipientType  }) {
+export default function EmailTemplate({ fullName, email, state, planName, agent, dataTeam, resources, acquisitionTeam, totalprice, recipientType }) {
   return (
     <div style={{ background: '#f7f7f7', padding: '40px 20px', fontFamily: 'Arial, sans-serif' }}>
       <div style={{ maxWidth: '600px', margin: 'auto', background: '#ffffff', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', padding: '35px', textAlign: 'center' }}>
@@ -34,30 +34,34 @@ export default function EmailTemplate({ fullName, email, state, planName, option
             <strong>Plan Name:</strong> <span style={{ color: '#e0be40', fontSize: '22px', fontWeight: '600' }}>{planName}</span>
           </p>
           <p style={{ color: '#555', fontSize: '16px' }}>
-            <strong>Option:</strong> {option.name}
+            <strong>Option:</strong> {agent} Agent
           </p>
+          {dataTeam && (
+            <p style={{ color: '#555', fontSize: '16px' }}>
+              <strong>DataTeam:</strong> {dataTeam}
+            </p>
+          )}
           
-          {/* Features List */}
           <div>
-            <h4 style={{ color: '#333', fontSize: '18px', margin: '10px 0 5px' }}>Features</h4>
+            <h4 style={{ color: '#333', fontSize: '18px', margin: '10px 0 5px' }}>Resources</h4>
             <ul style={{ listStyleType: 'circle', paddingLeft: '20px', margin: '5px 0', color: '#555' }}>
-              {planFeatures.map(x => (
+              {resources.map(x => (
                 <li key={x} style={{ marginBottom: '5px', fontSize: '16px' }}>{x}</li>
               ))}
             </ul>
           </div>
 
-          {/* Extra Price List */}
-          {planExtraPrice && planExtraPrice.length > 0 && (
-            <div>
-              <h4 style={{ color: '#333', fontSize: '18px', margin: '10px 0 5px' }}>Extra Services</h4>
-              <ul style={{ listStyleType: 'circle', paddingLeft: '20px', margin: '5px 0', color: '#555' }}>
-                {planExtraPrice.map(x => (
-                  <li key={x} style={{ marginBottom: '5px', fontSize: '16px' }}>{x}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+        {acquisitionTeam?.length > 0 && (
+          <div>
+            <h4 style={{ color: '#333', fontSize: '18px', margin: '10px 0 5px' }}>AcquisitionTeam</h4>
+            <ul style={{ listStyleType: 'circle', paddingLeft: '20px', margin: '5px 0', color: '#555' }}>
+              {acquisitionTeam.map(x => (
+                <li key={x} style={{ marginBottom: '5px', fontSize: '16px' }}>{x}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
 
           {/* Total Price */}
           <div style={{ borderTop: '2px solid #e0be40', paddingTop: '20px', marginTop: '20px', textAlign: 'center' }}>

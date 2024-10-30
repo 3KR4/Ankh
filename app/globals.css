@@ -420,10 +420,13 @@ pre.placeHolder {
   position: absolute;
   z-index: 1;
   top: 17px;
-  left: 19px;
+  left: 19.8px;
   font-size: 13.4px;
-  font-weight: 500;
   transition: 0.3s;
+  color: #acacac;
+}
+.inputHolder:has(textarea) h6.placeHolder {
+  left: 20.7px;
 }
 .inputHolder input:focus {
   padding: 14px 19px 0;
@@ -435,15 +438,11 @@ pre.placeHolder {
   letter-spacing: 0.7px;
   line-height: 1.3;
 }
-.inputHolder textarea:focus {
+.inputHolder textarea:focus,
+.inputHolder .holder textarea:not(:placeholder-shown) {
   padding: 27px 19px 0;
 }
-.inputHolder:has(textarea) h6.placeHolder {
-  font-size: 17px;
-  font-weight: 300;
-}
 .inputHolder textarea::placeholder {
-  font-weight: 300;
   font-size: 15.3px;
 }
 .inputHolder input::placeholder,
@@ -457,8 +456,8 @@ pre.placeHolder {
 }
 .inputHolder:has(input:focus) h6.placeHolder,
 .inputHolder:has(textarea:focus) h6.placeHolder {
-  top: 9px;
-  font-size: 12px;
+  top: 9px !important;
+  font-size: 12px !important;
   color: var(--main-color) !important;
 }
 .inputHolder input:not(:placeholder-shown) {
@@ -467,9 +466,9 @@ pre.placeHolder {
 
 .inputHolder:has(input:not(:placeholder-shown)) h6.placeHolder,
 .inputHolder:has(textarea:not(:placeholder-shown)) h6.placeHolder { 
-  top: 9px;
-  font-size: 12px;
-    color: #838383;
+  top: 9px !important;
+  font-size: 12px !important;
+  color: #838383;
 }
 .inputHolder.notvalid:has(input:focus) h6.placeHolder,
 .inputHolder.notvalid:has(textarea:focus) h6.placeHolder {
@@ -537,7 +536,7 @@ form button.remove:hover {
   padding: 0 19px;
   resize: none;
   border: none;
-  font-size: 13px;
+  font-size: 12.7px;
   letter-spacing: 0.5px;
   font-weight: 300;
   font-family: 'Manrope';
@@ -597,6 +596,16 @@ form button.remove:hover {
   gap: 12px;
   overflow: auto;
 }
+p.error {
+  color: #ff2020;
+  font-size: 14px;
+  margin-left: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 
 /*! ============== HEADER ============== */
 
@@ -1238,12 +1247,14 @@ header nav a.active {
   gap: 20px;
   row-gap: 25px;
   width: 100%;
+  padding-bottom: 30px;
 }
 .pricing-cards .card {
   border-top: 8px solid #474747;
   border-radius: 33px;
-  padding: 30px 34px 27px;
+  padding: 30px 25px 27px;
   position: relative;
+  height: fit-content;
 }
 .pricing-cards .card::before {
   content: '';
@@ -1319,10 +1330,13 @@ header nav a.active {
   background: white !important;
 }
 .pricing-cards .card hr {
-  margin: 12px 0 6px;
+  margin: 13px 0 11px;
   background: transparent;
   border-bottom: 2px dotted var(--border-color);
   height: 0;
+}
+.pricing-cards .card:first-child .select .menu {
+  max-height: 155px;
 }
 .pricing-cards .card label  {
   color: var(--paragraph-color);
@@ -1347,6 +1361,19 @@ header nav a.active {
   min-width: 71px;
   text-align: center;
 }
+.pricing-cards .card:last-child .plusPrice {
+  display: flex;
+  position: relative;
+  width: 100%;
+  right: 0;
+  top: unset;
+  transform: translateY(0);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  margin-top: 9px;
+}
  .select {
   position: relative;
 }
@@ -1370,6 +1397,10 @@ header nav a.active {
 .checkout .select .btn {
   height: 54px;
 }
+.select .btn span {
+  flex: 1;
+  margin-left: 3px;
+}
  .select .btn img {
   width: 17px !important;
   height: 17px !important;
@@ -1389,7 +1420,7 @@ header nav a.active {
   width: 100%;
   top: 53px;
   overflow: auto;
-  max-height: 213px;
+  max-height: 175px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -1408,7 +1439,7 @@ header nav a.active {
   font-size: 14px;
   cursor: pointer;
   color: white;
-  padding: 7px 20px;
+  padding: 4px 20px;
   width: 100%;
   transition: 0.3s;
   transition: 0.3s;
@@ -1450,6 +1481,7 @@ header nav a.active {
   font-weight: 200;
   letter-spacing: 0.5px;
   margin-bottom: 3px;
+  align-items: flex-start;
 }
 .pricing-cards .card > div ul li svg {
   color: #ffffff;
@@ -1457,6 +1489,7 @@ header nav a.active {
   border-radius: 50%;
   width: 15px;
   height: 15px;
+  transform: translateY(4px);
 }
 .pricing-cards .card .specific {
   margin-top: 4px;
@@ -1549,8 +1582,90 @@ header nav a.active {
 }
 
 .pricing-cards .card input:checked + .slider:before {
-  transform: translateX(1.4em);
+  transform: translateX(1.5em);
   background-color: #0d0d0ced;
+}
+.pricing-cards .holld {
+  margin: 0px 0 12px;
+}
+
+.customPlan {
+  padding: 120px 0 30px;
+  margin: 0;
+}
+.customPlan form {
+  width: 80%;
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 30px;
+  border: 2px solid #525252;
+  border-radius: 19px;
+}
+.customPlan form .rowHolder {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.customPlan .select {
+  position: relative;
+  width: 300px;
+  height: 59px;
+}
+.customPlan .select .btn {
+  height: 100%;
+  margin: 0;
+  backdrop-filter: blur(6px);
+  background: #101010c7;
+  border: 2px solid var(--border-color);
+}
+.customPlan .inputHolder {
+  border-radius: 0;
+  border: none;
+}
+.customPlan .inputHolder .holder {
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+}
+.customPlan .inputHolder h6.placeHolder {
+  font-size: 13.6px;
+  top: 20px;
+}
+.customPlan .inputHolder input {
+  height: 55px;
+}
+.customPlan .inputHolder input:focus {
+  padding: 14px 19px 0;
+}
+.customPlan .select .menu.active {
+  transform: translateY(4px);
+}
+.customPlan .select .menu li {
+  letter-spacing: 0.5px;
+}
+.customPlan p.error {
+  font-size: 13px;
+  margin: 6px 8px 0;
+}
+.customPlan .main-button:hover {
+  background: #fefdf8;
+}
+.inputHolder .holder textarea {
+  font-size: 20px;
+}
+.inputHolder .holder textarea::placeholder {
+  font-size: 13.3px;
+}
+.inputHolder .holder textarea:not(:placeholder-shown) {
+  font-size: 14.8px;
+}
+.customPlan .inputHolder .holder:has(textarea)::before {
+  bottom: 0px;
+}
+.inputHolder:has(textarea) h6.placeHolder {
+  font-size: 14.8px !important;
+  top: 19.5px !important;
 }
 
 /*! ============== CHECKOUT ============== */
@@ -1559,6 +1674,9 @@ header nav a.active {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.checkout .customPlan {
+  padding: 0;
 }
 .hero.checkout {
   margin-bottom: 52px;
@@ -1573,10 +1691,6 @@ header nav a.active {
   font-weight: 700;
   margin: 12px 0px -12px 5px; 
 }
-.checkout .big-holder {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(234px, 1fr));
-}
 
 .checkout-form {
   display: flex;
@@ -1588,6 +1702,7 @@ header nav a.active {
 .checkout-form form {
   width: 100%;
   display: flex;
+  align-items: center;
   gap: 30px;
 }
 .checkout-form form .right {
@@ -1629,12 +1744,19 @@ header nav a.active {
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  padding: 12px 18px;
+  padding: 12px 0px;
   gap: 7px;
+  width: 50%;
 }
-.checkout .big-holder .holder:nth-child(2) {
-  border-right: 2px solid var(--border-color);
-  border-left: 2px solid var(--border-color);
+.checkout .big-holder .holder h4 {
+  font-size: 17px;
+  color: var(--main-color);
+  font-weight: 500;
+}
+.checkout .right hr {
+  margin: 13px 0 -2px;
+  background: transparent;
+  border-bottom: 2px dotted var(--border-color);
 }
 .checkout .big-holder .holder h3 {
   font-size: 23px;
@@ -1646,10 +1768,14 @@ header nav a.active {
   align-items: center;
   gap: 4px;
 }
+.checkout .big-holder .holder div.select {
+  width: 100%;
+}
 .checkout .big-holder .holder label {
   color: white;
   font-weight: 300;
-  font-size: 18px;
+  letter-spacing: 0.5px;
+  font-size: 16px;
 }
 .checkout .big-holder .holder .checkbox-wrapper-13 input[type=checkbox]:checked {
   background: var(--main-color);
@@ -1691,22 +1817,22 @@ header nav a.active {
 .checkout .list #allSelected h4 {
   color: black;
   font-size: 17px;
-  font-weight: bolder;
   margin-bottom: 2px;
+  font-weight: 800;
 }
 .checkout .list #allSelected ul {
 
 }
 .checkout .list #allSelected ul li {
   color: black;
-  font-weight: 700;
+  font-weight: 600;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #bca037;
   padding: 6px 12px;
-  font-size: 17px;
+  font-size: 16px;
 }
 .checkout .list .bottom  {
   display: flex;
@@ -1986,12 +2112,6 @@ body:has(.hero.why) .backImg {
     font-size: 42px;
   }
 }
-@media (max-width: 1400px) {
-  .checkout .big-holder .holder:nth-child(2) {
-    border: none;
-  }
-}
-
 @media (max-width: 1200px) {
   header {
     width: 71%;
@@ -2105,6 +2225,18 @@ body:has(.hero.why) .backImg {
   }
   .checkout .big-holder .holder h3{
     font-size: 20px;
+  }
+  .customPlan form {
+    width: 100%;
+  }
+  .customPlan .inputHolder h6.placeHolder {
+    font-size: 13.5px;
+    top: 21px;
+    left: 20px;
+  }
+  .inputHolder:has(textarea) h6.placeHolder {
+    font-size: 14.8px !important;
+    top: 16.5px !important;
   }
 }
 
@@ -2298,12 +2430,7 @@ body:has(.hero.why) .backImg {
   .checkout-form .rowHolder {
     flex-direction: column-reverse;
   }
-  .checkout .big-holder .holder:nth-child(2) {
-    border-top: 2px solid var(--border-color);
-    border-bottom: 2px solid var(--border-color);
-    border-right: none;
-    border-left: none;
-  }
+
   .checkout .list #allSelected ul li {
     padding: 6px 4px;
     font-weight: 600;
@@ -2329,6 +2456,18 @@ body:has(.hero.why) .backImg {
   .stripeForm .x {
     margin-right: 25px;
     align-self: flex-end;
+  }
+  .customPlan form {
+    padding: 23px;
+  }
+  .customPlan form .rowHolder {
+    flex-direction: column;
+  }
+  .inputHolder:has(textarea) h6.placeHolder {
+    top: 17.5px !important;
+  }
+  .hero.payment > h2 {
+    font-size: 29px !important;
   }
 }
 

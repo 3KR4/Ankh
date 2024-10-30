@@ -8,18 +8,16 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
   const { clientInfo, selectedPlan } = usePlanContext();
 
   const { name:fullName, email, state } = clientInfo;
-  const { planName, option, features, extraPrice } = selectedPlan;
+  const { planName, resources, option, dataTeam, acquisitionTeam } = selectedPlan;
 
-  const planFeatures = Object.values(features).map(feature => feature.name);
-  const planExtraPrice = extraPrice.map(extra => extra.name);
+  const curentResources = resources?.map(resource => resource.name);
+  const curentAcquisitionTeam = acquisitionTeam?.map(acquisition => acquisition.name);
 
   const stripe = useStripe();
   const elements = useElements();
 
   const [loading, setLoading] = useState(false)
-  const [errormessage, setErrorMessage] = useState()
 
-  let totalprice = amount()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +29,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
 
     const handleError = (error)=>{
       setLoading (false)
-      setErrorMessage (error.message)
+      alert(error.message)
     }
 
     sendEmail();
@@ -45,7 +43,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
     const res = await fetch('api/create-intent', {
       method: 'POST',
       body: JSON.stringify({
-        amount: amount()
+        amount: amount
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -59,7 +57,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       clientSecret,
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/payment-confirm",
+        return_url: "https://www.ankhcallcenter.com/payment-confirm",
       },
     });
 
@@ -85,10 +83,11 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
         email,
         state,
         planName,
-        option,
-        planFeatures,
-        planExtraPrice,
-        totalprice
+        agent: option.agentNumber,
+        dataTeam: dataTeam.dataNumber,
+        resources: curentResources,
+        acquisitionTeam: curentAcquisitionTeam,
+        totalprice: amount,
       }),
     })
     .then(response => response.json())

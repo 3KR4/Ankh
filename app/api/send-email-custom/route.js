@@ -1,43 +1,34 @@
 import { Resend } from "resend";
-import EmailTemplate from "../../_components/EmailTemplate";
-
+import CustomPlanTemplate from '../../_components/CustomPlanTemplate'
 const resend = new Resend('re_PxZHRwaR_84zTsVLacaTZhs5Gja3hfLQC');
 
 export async function POST(Request) {
   try {
-    const { fullName, email, state, planName, agent, dataTeam, resources, acquisitionTeam, totalprice } = await Request.json();
+    const { name, email, state, message, agents, dataTeam } = await Request.json();
 
-    // Send email to your company
     const dataForCompany = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: ["mouhamedmahmoud820@gmail.com"],
-      subject: "New Purchase",
-      react: EmailTemplate({
-        fullName,
+      subject: "New Custom Order",
+      react: CustomPlanTemplate({
+        name,
         email,
         state,
-        planName,
-        agent,
+        message,
+        agents,
         dataTeam,
-        resources,
-        acquisitionTeam,
-        totalprice,
         recipientType: "company",
       }),
     });
 
-    // Send email to the client
     const dataForClient = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: ["mouhamedmahmoud820@gmail.com"],
-      subject: "Payment Successful!",
-      react: EmailTemplate({
-        planName,
-        agent,
+      subject: "Your request has reached us",
+      react: CustomPlanTemplate({
+        name,
+        agents,
         dataTeam,
-        resources,
-        acquisitionTeam,
-        totalprice,
         recipientType: "client",
       }),
     });

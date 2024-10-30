@@ -23,17 +23,50 @@ export const AllProvider = ({ children }) => {
     }
   };
 
+  const plans = {
+    optionsPrice: 20,
+    dataTeamPrice: 50,
+    resources: [
+        { name: 'Cold Caller', price: 300 },
+        { name: 'Quality Assurance', price: 200 },
+        { name: 'Customer Success Manager', price: 400 },
+        { name: 'Tools', price: 250 },
+    ],
+    acquisitionTeam: [
+        { name: 'lead manager', price: 500 },
+        { name: 'acquisition manager', price: 650 },
+        { name: 'disposition manager', price: 550 },
+    ],
+};
+
   const [selectedPlan, setSelectedPlan] = useState({
-    planName: 'Silver',
-    features: {},
+    planName: '',
+    resources: [],
     option: {},
-    extraPrice: [],
+    dataTeam: {},
+    acquisitionTeam: [],
   });
+
   const [clientInfo, setClientInfo] = useState({
     name: '',
     email: '',
     state: '',
+    message: '',
+    agents: 0,
+    dataTeam: 0,
   });
+
+  const states = [
+    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+    'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+    'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+    'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+    'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+    'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma',
+    'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
+    'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
+    'West Virginia', 'Wisconsin', 'Wyoming',
+];
 
 
   useEffect(() => {
@@ -46,7 +79,7 @@ export const AllProvider = ({ children }) => {
 
 
   return (
-    <PlanContext.Provider value={{ bookMenu, setBookMenu, selectedPlan, setSelectedPlan, clientInfo, setClientInfo, validationMSg, setValidationMSg, handleErrorMsg, paymentAmount, setPaymentAmount }}>
+    <PlanContext.Provider value={{ plans, states, bookMenu, setBookMenu, selectedPlan, setSelectedPlan, clientInfo, setClientInfo, validationMSg, setValidationMSg, handleErrorMsg, paymentAmount, setPaymentAmount }}>
       {children}
     </PlanContext.Provider>
   );
