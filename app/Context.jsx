@@ -27,15 +27,15 @@ export const AllProvider = ({ children }) => {
     optionsPrice: 20,
     dataTeamPrice: 50,
     resources: [
-        { name: 'Cold Caller', price: 300 },
-        { name: 'Quality Assurance', price: 200 },
-        { name: 'Customer Success Manager', price: 400 },
-        { name: 'Tools', price: 250 },
+        { name: 'Cold Caller', price: 3000 },
+        { name: 'Quality Assurance', price: 2000 },
+        { name: 'Customer Success Manager', price: 4000 },
+        { name: 'Tools', price: 2500 },
     ],
     acquisitionTeam: [
-        { name: 'lead manager', price: 500 },
-        { name: 'acquisition manager', price: 650 },
-        { name: 'disposition manager', price: 550 },
+        { name: 'lead manager', price: 5000 },
+        { name: 'acquisition manager', price: 6050 },
+        { name: 'disposition manager', price: 5500 },
     ],
 };
 

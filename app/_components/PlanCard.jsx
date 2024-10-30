@@ -129,7 +129,7 @@ const PlanCard = ({ data, plan, details }) => {
                 <Check /> {feature.name}
                 {feature.name === 'Tools' && plan === 'Gold' && (
                   <>
-                    : <br /> (dialer-crm-management) <br /> (readymode- Monday- propstream)
+                    : <br /> (readymode- Monday- propstream)
                   </>
                 )}
               </li>

@@ -30,8 +30,10 @@ export default function Checkout() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-let client = JSON.parse(localStorage.clientInfo)
+  let client = {};
+  if (localStorage.getItem('clientInfo')) {
+    client = JSON.parse(localStorage.getItem('clientInfo'));
+  }
 
   console.log(localStorage.clientInfo);
   
