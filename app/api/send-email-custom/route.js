@@ -1,14 +1,15 @@
 import { Resend } from "resend";
-import CustomPlanTemplate from '../../_components/CustomPlanTemplate'
-const resend = new Resend('re_PxZHRwaR_84zTsVLacaTZhs5Gja3hfLQC');
+import CustomPlanTemplate from '../../_components/CustomPlanTemplate';
 
-export async function POST(Request) {
+const resend = new Resend('re_GwvpQ5dE_CjFsCByDxcXFQcjeGtvWownC');
+
+export async function POST(request) {
   try {
-    const { name, email, state, message, agents, dataTeam } = await Request.json();
+    const { name, email, state, message, agents, dataTeam } = await request.json();
 
     const dataForCompany = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: ["mouhamedmahmoud820@gmail.com"],
+      from: "Ankhcallcenter@ankhcallcenter.com", // Ensure this email address is valid and verified in Resend
+      to: ["info@ankhcallcenter.com"],
       subject: "New Custom Order",
       react: CustomPlanTemplate({
         name,
@@ -22,8 +23,8 @@ export async function POST(Request) {
     });
 
     const dataForClient = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: ["mouhamedmahmoud820@gmail.com"],
+      from: "Ankhcallcenter@ankhcallcenter.com",
+      to: [email],
       subject: "Your request has reached us",
       react: CustomPlanTemplate({
         name,

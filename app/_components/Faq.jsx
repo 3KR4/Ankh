@@ -4,20 +4,28 @@ import FaqBox from './FaqBox'
 
 const faq = [
   {
-    title:'What are the payment Methods Available?',
-    paragraph:'We offer a variety of flexible payment options to make the process as smooth as possible for you. credit and debit cards (Visa, MasterCard, American Express), bank transfers, digital wallets  via our various partners',
+    title:'How many calls does each agent handle?',
+    paragraph:'Each agent is responsible for managing up to 500 calls.',
   },
   {
-    title:'Do Ankh offer free trials?',
-    paragraph:'We offer a variety of flexible payment options to make the process as smooth as possible for you. credit and debit cards (Visa, MasterCard, American Express), bank transfers, digital wallets  via our various partners',
+    title:'What payment methods do you accept?',
+    paragraph:'We offer several payment options, including Stripe, Payoneer, and wire transfer.',
   },
   {
-    title:'Which plan is right for me?',
-    paragraph:'We offer a variety of flexible payment options to make the process as smooth as possible for you. credit and debit cards (Visa, MasterCard, American Express), bank transfers, digital wallets  via our various partners',
+    title:'How customizable are your plans?',
+    paragraph:'Our plans are highly customizable to meet your specific requirements. Contact us to discuss your needs.',
   },
   {
-    title:'Which plan is right for me?',
-    paragraph:'We offer a variety of flexible payment options to make the process as smooth as possible for you. credit and debit cards (Visa, MasterCard, American Express), bank transfers, digital wallets  via our various partners',
+    title:'How can I evaluate the performance of the agents?',
+    paragraph:'We send weekly performance reports to help you assess agent effectiveness.',
+  },
+  {
+    title:'Where do you operate?',
+    paragraph:'We provide services all over the United States.',
+  },
+  {
+    title:'How do you ensure the quality of your service?',
+    paragraph:'We maintain service quality through regular monitoring, feedback, and quality assurance processes.',
   },
 ]
 

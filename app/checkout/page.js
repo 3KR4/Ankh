@@ -2,7 +2,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
-import { CircleAlert } from 'lucide-react';
 import Services from '../_components/Services';
 import Reviews from '../_components/Reviews';
 import { Elements } from '@stripe/react-stripe-js';
@@ -30,20 +29,24 @@ export default function Checkout() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  let client = {};
-  if (localStorage.getItem('clientInfo')) {
-    client = JSON.parse(localStorage.getItem('clientInfo'));
-  }
-
-  console.log(localStorage.clientInfo);
   
-  const [state, setState] = useState(client.state || 'Select Your State');
+  const [client, setClient] = useState({});
+  const [state, setState] = useState('Select Your State');
   const [menu, setMenu] = useState(false);
   const [openPay, setOpenPay] = useState(false);
   const [isClickOnCheck, setIsClickOnCheck] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if(localStorage.getItem('clientInfo')) {
+        const storedClient = JSON.parse(localStorage.getItem('clientInfo'));
+        setClient(storedClient);
+        setState(storedClient.state || 'Select Your State');
+      }
+    }
+  }, []);
+
   const calculateTotal = useCallback(() => {
-    // Sum resources, option discount, dataTeam discount, and acquisitionTeam items
     const resourcesTotal = selectedPlan.resources?.reduce((sum, item) => sum + item.price, 0) || 0;
     const optionDiscount = selectedPlan.option?.discount || 0;
     const dataTeamTotal = selectedPlan.dataTeam?.total || 0;
@@ -53,13 +56,17 @@ export default function Checkout() {
   }, [selectedPlan]);
 
   const handleCheckOut = (data) => {
-    let client = {
+    const clientInfo = {
       name: data.name,
       email: data.email,
       state: state,
+    };
+    setClientInfo(clientInfo);
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('clientInfo', JSON.stringify(clientInfo));
     }
-    setClientInfo(client)
-    localStorage.setItem('clientInfo', JSON.stringify(client))
+
     if (state !== 'Select Your State') {
       setOpenPay(true);
     }
@@ -77,7 +84,6 @@ export default function Checkout() {
         <CheckoutForm openPay={openPay} setOpenPay={setOpenPay} amount={calculateTotal()} />
       </Elements>
 
-
       <div className="checkout">
         <div className="hero checkout container">
           <span className="hiddens" data-aos="zoom-in-up">Flexible Plans</span>
@@ -87,9 +93,9 @@ export default function Checkout() {
 
         <div className="checkout-form" data-aos="zoom-in-up">
           <form onSubmit={handleSubmit(handleCheckOut)}>
-            <div className="right customPlan" >
+            <div className="right customPlan">
               <div className="rowHolder">
-                    {/* Full Name Validation */}
+                {/* Full Name Validation */}
                 <div className={`inputHolder ${errors.name ? 'notvalid' : ''}`}>
                   <h6 className="placeHolder" onClick={() => document.getElementById('userName').focus()}>
                     Enter your Full name
@@ -112,26 +118,26 @@ export default function Checkout() {
                   {errors.name && <p className="error">{errors.name.message}</p>}
                 </div>
 
-                    {/* State Selection */}
+                {/* State Selection */}
                 <div className={`select ${state === 'Select Your State' ? 'notvalid' : ''}`}>
-                    <div className="btn" onClick={() => setMenu((prev) => !prev)}>
-                      {state === 'Select Your State' ? '' : 'State:'} {state}
-                      <Image src="/image/angle down.png" fill />
-                    </div>
-                    <ul className={`menu ${menu && 'active'}`}>
-                      {states.map((x, idx) => (
-                        <li
-                          key={idx}
-                          className={state === x ? 'active' : ''}
-                          onClick={() => {
-                            setMenu(false);
-                            setState(x);
-                          }}
-                        >
-                          {x}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="btn" onClick={() => setMenu((prev) => !prev)}>
+                    {state === 'Select Your State' ? '' : 'State:'} {state}
+                    <Image src="/image/angle down.png" fill />
+                  </div>
+                  <ul className={`menu ${menu && 'active'}`}>
+                    {states.map((x, idx) => (
+                      <li
+                        key={idx}
+                        className={state === x ? 'active' : ''}
+                        onClick={() => {
+                          setMenu(false);
+                          setState(x);
+                        }}
+                      >
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
@@ -157,9 +163,9 @@ export default function Checkout() {
                 {errors.email && <p className="error">{errors.email.message}</p>}
               </div>
 
-              <hr/>
+              <hr />
 
-              <Flexible_Plan/>
+              <Flexible_Plan />
             </div>
 
             <div className="list">
@@ -169,10 +175,9 @@ export default function Checkout() {
                   <h4>Agents:</h4>
                   <ul>
                     <li>
-                      {selectedPlan.option.agentNumber} Agent <span>--${selectedPlan.option.discount}</span> 
+                      {selectedPlan.option.agentNumber} Agent <span>--${selectedPlan.option.discount}</span>
                     </li>
                   </ul>
-
                 </div>
 
                 {selectedPlan?.dataTeam?.dataNumber > 0 && (
@@ -180,22 +185,21 @@ export default function Checkout() {
                     <h4>DataTeam:</h4>
                     <ul>
                       <li>
-                        {selectedPlan.dataTeam.dataNumber} DataTeam <span>${selectedPlan.dataTeam.total}</span> 
+                        {selectedPlan.dataTeam.dataNumber} Data Resources <span>${selectedPlan.dataTeam.total}</span>
                       </li>
                     </ul>
                   </div>
                 )}
 
-
                 {selectedPlan.resources && (
                   <div>
                     <h4>Resources:</h4>
                     <ul>
-                    {selectedPlan.resources.map((resource) => (
-                      <li key={resource.name}>
-                        {resource.name} <span>${resource.price}</span>
-                      </li>
-                    ))}
+                      {selectedPlan.resources.map((resource) => (
+                        <li key={resource.name}>
+                          {resource.name} <span>${resource.price}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 )}
@@ -206,11 +210,10 @@ export default function Checkout() {
                     <ul>
                       {selectedPlan.acquisitionTeam.map((team) => (
                         <li key={team.name}>
-                          {team.name} <span>${team.price}</span> 
+                          {team.name} <span>${team.price}</span>
                         </li>
                       ))}
                     </ul>
-
                   </div>
                 )}
               </div>
@@ -226,7 +229,6 @@ export default function Checkout() {
         </div>
 
         <Services />
-        <Reviews />
       </div>
     </>
   );

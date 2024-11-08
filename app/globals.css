@@ -1184,17 +1184,23 @@ header nav a.active {
   display: flex;
   flex-direction: column;
   border-bottom: 3px solid var(--border-color);
-  padding: 27px 0;
+  padding: 18px 10px;
   transition: 0.3s;
+  height: fit-content;
 }
 .faq .hold button {
   color: white;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 34px;
+  font-size: 28px;
+  font-weight: 300;
+  font-family: 'Manrope';
   align-items: center;
   transition: 0.3s;
+}
+.faq .hold button .btns {
+  display: flex;
 }
 .faq .hold button svg {
   width: 30px;
@@ -1208,7 +1214,7 @@ header nav a.active {
   color: var(--main-color);
 }
 .faq .hold .hiddin {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--paragraph-color);
   letter-spacing: 0.3px;
   transform: scaleY(0);
@@ -1237,8 +1243,26 @@ header nav a.active {
 
 /*! ============== Pricing ============== */ 
 
+.hero.pricing {
+  padding: 20px 15 50px;
+  margin: 0;
+}
 .hero.pricing h1 {
   margin-bottom: 6px;
+}
+.hero.pricing .main-button {
+  margin: 21px 0 0;
+  width: 335px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background: var(--main-color);
+  color: black;
+}
+.hero.pricing .main-button:hover {
+  background: white !important;
 }
 .pricing-cards {
   margin-top: 50px;
@@ -1254,7 +1278,6 @@ header nav a.active {
   border-radius: 33px;
   padding: 30px 25px 27px;
   position: relative;
-  height: fit-content;
 }
 .pricing-cards .card::before {
   content: '';
@@ -1384,7 +1407,7 @@ header nav a.active {
   padding: 14px 15px;
   background: #7a7a79;
   gap: 7px;
-  color: white;
+  color: #acacac;
   border-radius: 6px;
   font-family: 'Manrope';
   text-align: left;
@@ -1405,6 +1428,7 @@ header nav a.active {
   width: 17px !important;
   height: 17px !important;
   transition: 0.3s;
+  opacity: 0.45;
 }
  .select:has(.menu.active) img {
   transform: rotate(180deg);
@@ -1488,6 +1512,7 @@ header nav a.active {
   /* background: white; */
   border-radius: 50%;
   width: 15px;
+  min-width: 15px;
   height: 15px;
   transform: translateY(4px);
 }
@@ -2053,6 +2078,10 @@ body:has(.hero.why) .backImg {
   width: 800px;
   height: 2400px;
 }
+body:has(.checkout) .backImg {
+  width: 880px;
+  height: 2423px;
+}
 
 @media(max-width:1600px) {
   .services {
@@ -2412,8 +2441,11 @@ body:has(.hero.why) .backImg {
     min-width: 100%;
   }
   .faq .hold button {
-    font-size: 23px;
+    font-size: 19px;
     text-align: left;
+  }
+  .faq .hold .hiddin {
+    font-size: 16px;
   }
   .calendly-container .hold {
     height: 86%;
@@ -2468,6 +2500,20 @@ body:has(.hero.why) .backImg {
   }
   .hero.payment > h2 {
     font-size: 29px !important;
+  }
+  .checkout .big-holder .holder {
+    width: 100%;
+  }
+  .checkout-form .big-holder .rowHolder {
+    flex-direction: column;
+    gap: 0px;
+  }
+  .checkout h2 {
+    margin: 4px 0px -2px;
+  }
+  .checkout-form form .right,
+  .checkout-form form .select {
+    width: 100%;
   }
 }
 

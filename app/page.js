@@ -54,7 +54,6 @@ export default function Home() {
           <Link className='main-button' href='/pricing' data-aos="zoom-in-up">View Pricing</Link>
         </div>
       </div>
-      <Reviews/>
       <Access h='Ready to Access Real Estate Expertise?' p='The Key to Real Estate Success is Just a Click Away' book={false}/>
     </>
   );
