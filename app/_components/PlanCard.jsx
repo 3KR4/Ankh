@@ -5,12 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePlanContext } from '../Context';
 
-const PlanCard = ({ data, plan, details }) => {
-  const { plans, setSelectedPlan } = usePlanContext();
-  const [agentNumber, setAgentNumber] = useState(1);
-  const [dataNumber, setDataNumber] = useState(1);
-  const [menu, setMenu] = useState(false);
-  const [menu2, setMenu2] = useState(false);
+const PlanCard = ({ plan, details }) => {
+  const { plans } = usePlanContext();
   const [isDataOrAcquisition, setIsDataOrAcquisition] = useState(false);
 
   return (
@@ -25,11 +21,11 @@ const PlanCard = ({ data, plan, details }) => {
         <ul>
           {Object.keys(plans.resources).map((featureKey, idx) => {
             const feature = plans.resources[featureKey];
-            if (feature.name === 'Tools' && plan === 'Silver') return null;
+            if (feature === 'Tools' && plan === 'Silver') return null;
             return (
               <li key={idx}>
-                <Check /> {feature.name}
-                {feature.name === 'Tools' && plan === 'Gold' && (
+                <Check /> {feature}
+                {feature === 'Tools' && plan === 'Gold' && (
                   <>
                     : <br /> (readymode- Monday- propstream)
                   </>
@@ -77,7 +73,7 @@ const PlanCard = ({ data, plan, details }) => {
         />
         <span className="slider"></span>
       </div>
-      Acquisition Team <span className='plusPrice'>+${plans.acquisitionTeam.reduce((sum, team) => sum + team.price, 0)}</span>
+      Acquisition Team <span className='plusPrice'>+$2600</span>
     </label>
 
     <label>
@@ -89,7 +85,7 @@ const PlanCard = ({ data, plan, details }) => {
         />
         <span className="slider"></span>
       </div>
-      Data Team <span className='plusPrice'>+$20 for each set</span>
+      Data Records <span className='plusPrice'>0.02% per record</span>
     </label>
   </div>
 ) : plan === 'Titanium' ? (  // Fixed the conditional check here
@@ -103,7 +99,7 @@ const PlanCard = ({ data, plan, details }) => {
       </ul>
     </div>
     <div className='holld' style={{margin: '0px 0 14px'}}> 
-        <label>Data Team</label>
+        <label>Data Records</label>
         <ul>
           <li>
             <Check /> You will be able to choose from a range of data records.
@@ -111,7 +107,7 @@ const PlanCard = ({ data, plan, details }) => {
         </ul>
       </div>
 
-    <span className='plusPrice'>+${plans.acquisitionTeam.reduce((sum, team) => sum + team.price, 0)} & +$20 for each set</span>
+    <span className='plusPrice'>+$2600 & 0.02% per record</span>
   </>
 ) : null // Ensure to handle cases for plans other than Platinum and Titanium
 }

@@ -6,9 +6,7 @@ import PlanCard from '../_components/PlanCard';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CircleAlert } from 'lucide-react';
 import { usePlanContext } from '../Context';
-
 
 export default function Pricing() {
   const { states, setClientInfo, setSelectedPlan, plans } = usePlanContext();
@@ -30,7 +28,6 @@ export default function Pricing() {
         dataTeam: data.numDataTeam,
       })
       sendEmail(data.name, data.email, state, data.message, data.numAgents, data.numDataTeam)
-
       window.location.href = '/payment-confirm?customPlan'
     };
 
@@ -54,17 +51,6 @@ export default function Pricing() {
       .catch(error => console.error('Error sending email:', error));
     };
 
-    const handleGetStarted = () => {
-      let selectedPlan = {
-        planName: 'Silver',
-        option: { agentNumber: 1, discount: 1 * plans.optionsPrice },
-        resources: plans.resources.filter(resource => resource.name !== 'Tools')
-      };
-  
-      localStorage.setItem('selectedPlan', JSON.stringify(selectedPlan));
-      setSelectedPlan(selectedPlan);
-    };
-
     return (
         <>
             <div className="hero pricing container">
@@ -77,7 +63,7 @@ export default function Pricing() {
                     <PlanCard plan='Platinum' details='Fits for Your Unique Needs' />
                     <PlanCard plan='Titanium' details='Ultimate Pack for Total Coverage' />
                 </div>
-                <Link data-aos="zoom-in-up" onClick={handleGetStarted} href='checkout' className='main-button'>Get Started</Link>
+                <Link data-aos="zoom-in-up" href='checkout' className='main-button'>Get Started</Link>
             </div>
 
             <div className="customPlan hero container" id='customPlan'>

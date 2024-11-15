@@ -34,11 +34,11 @@ export default function EmailTemplate({ fullName, email, state, planName, agent,
             <strong>Plan Name:</strong> <span style={{ color: '#e0be40', fontSize: '22px', fontWeight: '600' }}>{planName}</span>
           </p>
           <p style={{ color: '#555', fontSize: '16px' }}>
-            <strong>Option:</strong> {agent} Agent
+            <strong>Agents:</strong> {agent} {agent === 1 ? 'agent' : 'agents'}
           </p>
           {dataTeam && (
             <p style={{ color: '#555', fontSize: '16px' }}>
-              <strong>DataTeam:</strong> {dataTeam}
+              <strong>Data Records:</strong> {dataTeam}
             </p>
           )}
           

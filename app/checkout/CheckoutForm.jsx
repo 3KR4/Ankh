@@ -5,19 +5,19 @@ import { useState } from 'react';
 import { usePlanContext } from '../Context';
 
 const CheckoutForm = ({openPay, setOpenPay, amount}) => {
-  const { clientInfo, selectedPlan } = usePlanContext();
+  const { clientInfo, selectedPlan, setSelectedPlan, setClientInfo } = usePlanContext();
 
   const { name:fullName, email, state } = clientInfo;
-  const { planName, resources, option, dataTeam, acquisitionTeam } = selectedPlan;
+  const { planName, resources, agents, dataTeam, acquisitionTeam } = selectedPlan;
 
-  const curentResources = resources?.map(resource => resource.name);
+console.log(selectedPlan);
+
   const curentAcquisitionTeam = acquisitionTeam?.map(acquisition => acquisition.name);
 
   const stripe = useStripe();
   const elements = useElements();
 
   const [loading, setLoading] = useState(false)
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -63,13 +63,14 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
 
     if (result.error) {
       // Show error to your customer (for example, payment details incomplete)
-      console.log(result.error.message);
+      alert(result.error.message);
     } else {
       // Your customer will be redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
     }
     setLoading(false);
+    localStorage.removeItem('selectedPlan');
   };
 
   const sendEmail = async () => {
@@ -83,9 +84,9 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
         email,
         state,
         planName,
-        agent: option.agentNumber,
+        agent: agents,
         dataTeam: dataTeam.dataNumber,
-        resources: curentResources,
+        resources,
         acquisitionTeam: curentAcquisitionTeam,
         totalprice: amount,
       }),

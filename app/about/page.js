@@ -19,7 +19,7 @@ export default function About() {
         <div className='left' data-aos="zoom-in-right">
           <span className='hiddens'>Mission & Vision</span>
           <h1>Guiding the Future <br/> of <span>Real Estate</span> with <br/> Purpose and Integrity </h1>
-          <Link className='main-button' href='/'>Learn More</Link>
+          <Link className='main-button' href='/why-us'>Learn More</Link>
         </div>
         <div className='right' data-aos="zoom-in-left">
           <div className='hold'>
@@ -63,17 +63,17 @@ export default function About() {
         <div className='holder'>
           <div className='box' data-aos="zoom-in-right">
             <Image src='/image/linkid.png' alt='icon' fill></Image>
-            <h4>Doha | Business Developer <br/> <span>Previous Role overhere</span></h4>
+            <h4>Doha | Business Developer <br/></h4>
             <p>Doha is a master at forging partnerships and identifying new market opportunities. Her expertise in business strategy and relationship building has been key to expanding our client base and boosting revenue.</p>
           </div>
           <div className='box' data-aos="zoom-in-up">
             <Image src='/image/linkid.png' alt='icon' fill></Image>
-            <h4>Ibrahim Kamal | Founder <br/> <span>Previous Role overhere</span></h4>
+            <h4>Ibrahim Kamal | Founder <br/></h4>
             <p>With a decade of experience in strategic leadership, Ibrahim is the visionary behind our success. His passion for innovation and his ability to turn bold ideas into actionable plans have positioned our company as a market leader. </p>
           </div>
           <div className='box' data-aos="zoom-in-left">
             <Image src='/image/linkid.png' alt='icon' fill></Image>
-            <h4>Heba Kamal | CFO <br/> <span>Previous Role overhere</span></h4>
+            <h4>Heba Kamal | CFO <br/></h4>
             <p>Heba is the financial backbone of our company, with an eye for detail and a knack for optimizing budgets. With over 15 years of experience in financial management.</p>
           </div>
         </div>

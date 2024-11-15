@@ -17,18 +17,23 @@ const Flexible_Plan = () => {
   // Initialize local state with data from local storage if available
   const [agentNumber, setAgentNumber] = useState(() => {
     const storedPlan = JSON.parse(localStorage.getItem('selectedPlan'));
-    return storedPlan?.option.agentNumber || 1;
+    return storedPlan?.agents || 1;
   });
 
   const [dataNumber, setDataNumber] = useState(() => {
     const storedPlan = JSON.parse(localStorage.getItem('selectedPlan'));
     return storedPlan?.dataTeam?.dataNumber || 0;
   });
+  const [dataPrice, setDataPrice] = useState(() => {
+    const storedPlan = JSON.parse(localStorage.getItem('selectedPlan'));
+    return storedPlan?.dataTeam?.price || 0;
+  });
 
   const [resources, setResources] = useState(() => {
     const storedPlan = JSON.parse(localStorage.getItem('selectedPlan'));
-    return storedPlan?.resources || [];
+    return storedPlan?.resources.includes('Tools') ? plans.resources : alwaysCheckedResources;
   });
+
 
   const [acquisitionTeam, setAcquisitionTeam] = useState(() => {
     const storedPlan = JSON.parse(localStorage.getItem('selectedPlan'));
@@ -41,7 +46,7 @@ const Flexible_Plan = () => {
 
   // Function to determine the plan name based on selections
   const determinePlanName = () => {
-    const hasTools = resources.some(resource => resource.name === 'Tools');
+    const hasTools = resources.some(resource => resource === 'Tools');
     const hasDataTeam = dataNumber > 0;
     const hasAcquisitionTeam = acquisitionTeam.length > 0;
   
@@ -56,110 +61,152 @@ const Flexible_Plan = () => {
     }
   };
 
-  // Effect for updating local storage whenever state changes
+
   useEffect(() => {
     const newPlan = {
       ...selectedPlan,
+      planName,
       resources,
       acquisitionTeam,
-      option: {
-        ...selectedPlan.option,
-        agentNumber,
-        discount: agentNumber * plans.optionsPrice, // Calculate discount based on agent number
-      },
+      agents: agentNumber,
       dataTeam: {
         ...selectedPlan.dataTeam,
         dataNumber,
-        total: dataNumber * plans.dataTeamPrice, // Calculate total for data team
+        price: dataPrice,
       },
-      planName, // Include the plan name in the new plan
     };
-
-    // Save the new plan to local storage
     localStorage.setItem('selectedPlan', JSON.stringify(newPlan));
   }, [resources, acquisitionTeam, agentNumber, dataNumber, planName]);
 
-  // Effect for updating the context state when local storage changes
+
   useEffect(() => {
     const newPlan = {
       ...selectedPlan,
+      planName,
       resources,
       acquisitionTeam,
-      option: {
-        ...selectedPlan.option,
-        agentNumber,
-        discount: agentNumber * plans.optionsPrice, // Update discount based on agent number
-      },
+      agents: agentNumber,
       dataTeam: {
         ...selectedPlan.dataTeam,
         dataNumber,
-        total: dataNumber * plans.dataTeamPrice, // Update total for data team
+        price: dataPrice,
       },
-      planName, // Include the plan name in the new plan
     };
-
-    // Update the selected plan in context only if it's different from the current one
     if (JSON.stringify(newPlan) !== JSON.stringify(selectedPlan)) {
       setSelectedPlan(newPlan);
     }
-  }, [resources, acquisitionTeam, agentNumber, dataNumber, selectedPlan, setSelectedPlan, planName]);
+  }, [resources, acquisitionTeam, agentNumber, dataNumber, selectedPlan, planName]);
 
-  // Handle feature changes for main resources
+
+
+
   const handleFeatureChange = (resource) => {
-    // Prevent changing always-checked resources
-    if (alwaysCheckedResources.includes(resource.name)) return;
-
+    if (alwaysCheckedResources.includes(resource)) return;
     setResources((prevResources) => {
-      const exists = prevResources.some((item) => item.name === resource.name);
+      const exists = prevResources.some((item) => item === resource);
       return exists
-        ? prevResources.filter((item) => item.name !== resource.name)
+        ? prevResources.filter((item) => item !== resource)
         : [...prevResources, resource];
     });
   };
 
-  // Handle feature changes for acquisition team resources
-  const handleAcquisitionChange = (resource) => {
-    setAcquisitionTeam((prevResources) => {
-      const exists = prevResources.some((item) => item.name === resource.name);
+  const handleAcquisitionChange = (acquisition) => {
+    setAcquisitionTeam((prevAcquisition) => {
+      const exists = prevAcquisition.some((item) => item.name === acquisition.name);
       return exists
-        ? prevResources.filter((item) => item.name !== resource.name)
-        : [...prevResources, resource];
+        ? prevAcquisition.filter((item) => item.name !== acquisition.name)
+        : [...prevAcquisition, acquisition];
     });
   };
 
-  // Effect to determine the plan name based on selections
   useEffect(() => {
     determinePlanName();
-  }, [resources, dataNumber, acquisitionTeam]); // Run when resources, dataNumber, or acquisitionTeam changes
+  }, [resources, dataNumber, acquisitionTeam]);
 
   return (
     <div className='big-holder'>
-      <h2 className='planName' style={{margin: '0px 0px -7px 0px'}}>{planName} Plan</h2> {/* Display the determined plan name */}
+      <h2 className='planName' style={{margin: '0px 0px -7px 0px'}}>{planName} Plan</h2>
       <div className='rowHolder'>
         <div className='holder'>
-          <h4>Number of Agents</h4>
+          <h4>Select From Agents</h4>
           <div className="select">
             <div className='btn' onClick={() => {
               setMenu((prev) => !prev);
               setMenu2(false);
             }}>
               {`${agentNumber < 10 ? `0${agentNumber}` : agentNumber} Agent`}
-              {agentNumber !== 1 && <span>{`--$${agentNumber * plans.optionsPrice} OFF`}</span>}
               <Image src='/image/angle down.png' fill />
             </div>
             <ul className={`menu ${menu ? 'active' : ''}`}>
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+              <li
+                key={1}
+                className={agentNumber === 1 ? 'active' : ''}
+                onClick={() => {
+                  setAgentNumber(1);
+                  setMenu(false);
+                }}
+              >
+                {`01`}
+              </li>
+              <div className="offerDev">
+                <hr />
+                <span style={{ color: '#c3a437', margin: '-2px 0 -2px', background: '#272727', top: '12px' }}>Save 14%</span>
+                {[...Array(3)].map((_, index) => {
+                  const number = index + 2;
+                  return (
+                    <li
+                      style={{ background: '#272727', color: '#c3a437' }}
+                      key={number}
+                      className={agentNumber === number ? 'active' : ''}
+                      onClick={() => {
+                        setAgentNumber(number);
+                        setMenu(false);
+                      }}
+                    >
+                      {`${number < 10 ? `0${number}` : number}`}
+                    </li>
+                  );
+                })}
+              </div>
+
+              <div className='offerDev'>
+                <hr />
+                <span style={{ color: 'white', fontWeight: '400', background: '#383838' }}>Save 16%</span>
+                {[...Array(5)].map((_, index) => {
+                  const number = index + 5;
+                  return (
+                    <li
+                      style={{ background: '#383838', color: 'white', fontWeight: '300' }}
+                      key={number}
+                      className={agentNumber === number ? 'active' : ''}
+                      onClick={() => {
+                        setAgentNumber(number);
+                        setMenu(false);
+                      }}
+                    >
+                      {`${number < 10 ? `0${number}` : number}`}
+                    </li>
+                  );
+                })}
+              </div>
+
+              <div className='offerDev'>
+                <hr />
+                <span style={{ color: 'black' }}>Save 20%</span>
                 <li
-                  key={i}
-                  className={agentNumber === i ? 'active' : ''}
+                  style={{ background: '#a38b35', color: 'black' }}
+                  key={10}
+                  className={agentNumber === 10 ? 'active' : ''}
                   onClick={() => {
-                    setAgentNumber(i);
+                    setAgentNumber(10);
                     setMenu(false);
                   }}
                 >
-                  {`${i < 10 ? `0${i}` : i}`} <span>{`-$${i * plans.optionsPrice}`}</span>
+                  {`10`}
                 </li>
-              ))}
+              </div>
+
+              <hr/>
               <li>
                 <Link href={'/pricing#customPlan'} onClick={() => setMenu2(false)}>
                   Or Make Your Custom Plan
@@ -170,12 +217,10 @@ const Flexible_Plan = () => {
         </div>
 
         <div className='holder'>
-          <h4>Number Of Data Team</h4>
+          <h4>Select From Data Records</h4>
           <div className="select">
             <div className='btn' onClick={() => { setMenu2((prev) => !prev); setMenu(false) }}>
-              {dataNumber == 0 ? 'Select Data Team' : `${dataNumber < 10 ? `0${dataNumber}` : dataNumber} Data Team`}
-              {dataNumber > 0 && <span>{`+$${dataNumber * plans.dataTeamPrice}`}</span>}
-
+              {dataNumber == 0 ? 'Select Data Records' : `${dataNumber} Data Records`}
               <Image src='/image/angle down.png' fill />
             </div>
             <ul className={`menu ${menu2 ? 'active' : ''}`}>
@@ -183,21 +228,23 @@ const Flexible_Plan = () => {
                 className={dataNumber === 0 ? 'active' : ''}
                 onClick={() => {
                   setDataNumber(0);
+                  setDataPrice(0)
                   setMenu2(false);
                 }}
               >
-                I Don't Need Data Team
+                I Don't Need Data Records
               </li>
-              {Array.from({ length: 30 }, (_, i) => i + 1).map((i) => (
+              {plans.dataTeam.map((x) => (
                 <li
-                  key={i}
-                  className={dataNumber === i ? 'active' : ''}
+                  key={x.count}
+                  className={dataNumber === x.count ? 'active' : ''}
                   onClick={() => {
-                    setDataNumber(i);
+                    setDataNumber(x.count);
+                    setDataPrice(x.price)
                     setMenu2(false);
                   }}
                 >
-                  {`${i < 10 ? `0${i}` : i}`} <span>{`+$${i * plans.dataTeamPrice}`}</span>
+                  {`${x.count} Records`} <span>{`$${x.price}`}</span>
                 </li>
               ))}
               <li>
@@ -214,15 +261,15 @@ const Flexible_Plan = () => {
         <div className='holder'>
           <h4>Select From Resources</h4>
           {plans.resources.map((resource) => (
-            <div key={resource.name} className="checkbox-wrapper-13">
+            <div key={resource} className="checkbox-wrapper-13">
               <input
-                id={resource.name}
+                id={resource}
                 type="checkbox"
-                checked={resources.some((item) => item.name === resource.name) || alwaysCheckedResources.includes(resource.name)}
+                checked={resources.some((item) => item === resource) || alwaysCheckedResources.includes(resource)}
                 onChange={() => handleFeatureChange(resource)}
               />
-              <label htmlFor={resource.name}>
-                {resource.name} - ${resource.price}
+              <label htmlFor={resource}>
+                {resource === 'Tools' ? 'Tools:(readymode- Monday- propstream)' : resource}
               </label>
             </div>
           ))}
@@ -239,7 +286,7 @@ const Flexible_Plan = () => {
                 onChange={() => handleAcquisitionChange(acquisition)}
               />
               <label htmlFor={acquisition.name}>
-                {acquisition.name} - ${acquisition.price}
+                {acquisition.name}
               </label>
             </div>
           ))}

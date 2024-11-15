@@ -11,7 +11,7 @@ function Access({h, p, book}) {
     {book ?
       <BookBtn aos={true}/>
     :
-      <Link className='main-button' href='/' data-aos="fade-up-right">Succeed in Real Estate!</Link>
+      <Link className='main-button' href='/process' data-aos="fade-up-right">Succeed in Real Estate!</Link>
     }
   </div>
   )

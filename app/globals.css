@@ -214,6 +214,11 @@ a.main-button:hover {
   background: var(--main-color);
 }
 
+.Loader {
+  height: 400px;
+  font-size: 40px;
+}
+
 body > * > h1 {
   font-size: 65px;
   font-weight: 700;
@@ -426,7 +431,7 @@ pre.placeHolder {
   color: #acacac;
 }
 .inputHolder:has(textarea) h6.placeHolder {
-  left: 20.7px;
+  left: 21.5px;
 }
 .inputHolder input:focus {
   padding: 14px 19px 0;
@@ -1110,6 +1115,7 @@ header nav a.active {
   padding: 60px 50px 50px;
   border-radius: 52px;
   overflow: hidden;
+  border-left: 3px solid var(--main-color);
 }
 .about .hiddens {
   background: var(--body-color);
@@ -1244,7 +1250,7 @@ header nav a.active {
 /*! ============== Pricing ============== */ 
 
 .hero.pricing {
-  padding: 20px 15 50px;
+  padding: 20px 15px 90px;
   margin: 0;
 }
 .hero.pricing h1 {
@@ -1379,7 +1385,7 @@ header nav a.active {
   color: #0d0d0ced;
   font-size: 13px;
   font-weight: 700;
-  padding: 3px 12px;
+  padding: 4.5px 12px;
   letter-spacing: 0px;
   min-width: 71px;
   text-align: center;
@@ -1416,6 +1422,9 @@ header nav a.active {
   align-items: center;
   cursor: pointer;
   font-size: 14px;
+}
+.select hr {
+  margin: 5px 0 6px !important;
 }
 .checkout .select .btn {
   height: 54px;
@@ -1459,23 +1468,27 @@ header nav a.active {
   transform: translateY(0);
 }
 .select .menu li {
-  font-weight: 400;
   font-size: 14px;
   cursor: pointer;
   color: white;
   padding: 4px 20px;
   width: 100%;
   transition: 0.3s;
-  transition: 0.3s;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+.select .menu li:has(a):hover a {
+  color: black;
 }
 .select .menu li:hover,
 .select .menu li.active {
-  color: var(--main-color);
-  background: var(--section-color);
+  color: black !important;
+  font-weight: 500 !important;
+  background: #e4e4e4 !important;
 }
 .select .menu li.active {
-  background: transparent !important;
-  font-weight: 900;
   cursor: auto;
 }
 .pricing-cards .card.gold .select button {
@@ -1655,7 +1668,7 @@ header nav a.active {
 }
 .customPlan .inputHolder h6.placeHolder {
   font-size: 13.6px;
-  top: 20px;
+  top: 21.1px;
 }
 .customPlan .inputHolder input {
   height: 55px;
@@ -1666,9 +1679,7 @@ header nav a.active {
 .customPlan .select .menu.active {
   transform: translateY(4px);
 }
-.customPlan .select .menu li {
-  letter-spacing: 0.5px;
-}
+
 .customPlan p.error {
   font-size: 13px;
   margin: 6px 8px 0;
@@ -1690,7 +1701,8 @@ header nav a.active {
 }
 .inputHolder:has(textarea) h6.placeHolder {
   font-size: 14.8px !important;
-  top: 19.5px !important;
+  letter-spacing: -0.05px;
+  top: 18.5px !important;
 }
 
 /*! ============== CHECKOUT ============== */
@@ -1795,6 +1807,19 @@ header nav a.active {
 }
 .checkout .big-holder .holder div.select {
   width: 100%;
+}
+.checkout .big-holder .holder .offerDev {
+  display: block;
+  position: relative;
+}
+.checkout .big-holder .holder .offerDev span {
+  position: absolute;
+  padding: 2px 11px;
+  border-radius: 5px;
+  right: 8px;
+  top: 10px;
+  font-weight: 600;
+  font-size: 14px;
 }
 .checkout .big-holder .holder label {
   color: white;
@@ -2261,11 +2286,14 @@ body:has(.checkout) .backImg {
   .customPlan .inputHolder h6.placeHolder {
     font-size: 13.5px;
     top: 21px;
-    left: 20px;
+    left: 21px;
   }
   .inputHolder:has(textarea) h6.placeHolder {
     font-size: 14.8px !important;
     top: 16.5px !important;
+  }
+  .checkout-form form .right {
+    width: 100%;
   }
 }
 
@@ -2425,6 +2453,7 @@ body:has(.checkout) .backImg {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border-left: none;
   }
   .about h1 {
     font-size: 41px;
@@ -2496,7 +2525,7 @@ body:has(.checkout) .backImg {
     flex-direction: column;
   }
   .inputHolder:has(textarea) h6.placeHolder {
-    top: 17.5px !important;
+    top: 18.5px !important;
   }
   .hero.payment > h2 {
     font-size: 29px !important;
@@ -2515,6 +2544,7 @@ body:has(.checkout) .backImg {
   .checkout-form form .select {
     width: 100%;
   }
+  
 }
 
 @media (max-width: 388px) {
