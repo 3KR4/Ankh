@@ -42,7 +42,7 @@ export default function CustomPlanTemplate({ name, email, state, message, agents
             <strong>Number of Agents:</strong> <span style={{ color: '#e0be40', fontWeight: '700', fontSize: '20px' }}>{agents}</span>
           </p>
           <p style={{ color: '#555', fontSize: '16px' }}>
-            <strong>Number of Data Team Members:</strong> <span style={{ color: '#e0be40', fontWeight: '700', fontSize: '20px' }}>{dataTeam}</span>
+            <strong>DataRecords:</strong> <span style={{ color: '#e0be40', fontWeight: '700', fontSize: '20px' }}>{dataTeam}</span>
           </p>
           {recipientType === 'company' && (
             <p style={{ color: '#555', fontSize: '16px' }}>

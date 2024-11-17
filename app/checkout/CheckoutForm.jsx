@@ -5,12 +5,16 @@ import { useState } from 'react';
 import { usePlanContext } from '../Context';
 
 const CheckoutForm = ({openPay, setOpenPay, amount}) => {
+  const baseURL = 'https://ankhcallcenter.com'
+
+  //'http://localhost:3000'
+  //'https://ankhcallcenter.com'
+
+
   const { clientInfo, selectedPlan, setSelectedPlan, setClientInfo } = usePlanContext();
 
   const { name:fullName, email, state } = clientInfo;
   const { planName, resources, agents, dataTeam, acquisitionTeam } = selectedPlan;
-
-console.log(selectedPlan);
 
   const curentAcquisitionTeam = acquisitionTeam?.map(acquisition => acquisition.name);
 
@@ -40,7 +44,7 @@ console.log(selectedPlan);
       return;
     }
 
-    const res = await fetch('api/create-intent', {
+    const res = await fetch(`${baseURL}/api/create-intent`, {
       method: 'POST',
       body: JSON.stringify({
         amount: amount
@@ -57,7 +61,7 @@ console.log(selectedPlan);
       clientSecret,
       elements,
       confirmParams: {
-        return_url: "https://www.ankhcallcenter.com/payment-confirm",
+        return_url: `${baseURL}/payment-confirm`,
       },
     });
 
@@ -74,7 +78,7 @@ console.log(selectedPlan);
   };
 
   const sendEmail = async () => {
-    await fetch('/api/send-email', {
+    await fetch(`${baseURL}/api/send-email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Added header

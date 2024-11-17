@@ -9,6 +9,11 @@ import Link from 'next/link';
 import { usePlanContext } from '../Context';
 
 export default function Pricing() {
+  const baseURL = 'https://ankhcallcenter.com'
+
+  //'http://localhost:3000'
+  //'https://ankhcallcenter.com'
+
   const { states, setClientInfo, setSelectedPlan, plans } = usePlanContext();
     const {
         register,
@@ -28,11 +33,11 @@ export default function Pricing() {
         dataTeam: data.numDataTeam,
       })
       sendEmail(data.name, data.email, state, data.message, data.numAgents, data.numDataTeam)
-      window.location.href = '/payment-confirm?customPlan'
+      window.location.href = `${baseURL}/payment-confirm?customPlan`
     };
 
     const sendEmail = async (name, email, state, message, agents, dataTeam) => {
-      await fetch('/api/send-email-custom', {
+      await fetch(`${baseURL}/api/send-email-custom`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

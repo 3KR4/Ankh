@@ -1717,6 +1717,7 @@ header nav a.active {
 }
 .hero.checkout {
   margin-bottom: 52px;
+  padding: 0;
 }
 .hero.checkout > h1, .hero > h2 {
   font-size: 70px;
@@ -2544,7 +2545,12 @@ body:has(.checkout) .backImg {
   .checkout-form form .select {
     width: 100%;
   }
-  
+  .hero.checkout {
+    margin-bottom: 34px;
+  }
+  .hero.checkout p {
+    margin-top: 5px;
+  }
 }
 
 @media (max-width: 388px) {

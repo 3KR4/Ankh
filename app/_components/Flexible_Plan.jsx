@@ -150,7 +150,7 @@ const Flexible_Plan = () => {
               </li>
               <div className="offerDev">
                 <hr />
-                <span style={{ color: '#c3a437', margin: '-2px 0 -2px', background: '#272727', top: '12px' }}>Save 14%</span>
+                <span style={{ color: '#c3a437', margin: '-2px 0 -2px', background: '#272727', top: '12px' }}>Save {selectedPlan.resources.some(resource => resource === 'Tools') ? '12' : '14'}%</span>
                 {[...Array(3)].map((_, index) => {
                   const number = index + 2;
                   return (
@@ -192,7 +192,7 @@ const Flexible_Plan = () => {
 
               <div className='offerDev'>
                 <hr />
-                <span style={{ color: 'black' }}>Save 20%</span>
+                <span style={{ color: 'black', background: '#a38b35' }}>Save {selectedPlan.resources.some(resource => resource === 'Tools') ? '17' : '20'}%</span>
                 <li
                   style={{ background: '#a38b35', color: 'black' }}
                   key={10}

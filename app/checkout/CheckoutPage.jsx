@@ -59,22 +59,23 @@ export default function CheckoutPage() {
     const optionDiscount = isGold 
       ? (selectedPlan.agents >= 2 && selectedPlan.agents <= 4 ? 12 
         : selectedPlan.agents >= 5 && selectedPlan.agents <= 9 ? 16 
-        : selectedPlan.agents === 10 ? 20 
+        : selectedPlan.agents === 10 ? 17 
         : 0)
       : (selectedPlan.agents >= 2 && selectedPlan.agents <= 4 ? 14 
         : selectedPlan.agents >= 5 && selectedPlan.agents <= 9 ? 16 
-        : selectedPlan.agents === 10 ? 17 
+        : selectedPlan.agents === 10 ? 20 
         : 0);
 
         setOptionDiscount(optionDiscount)
 
-const savedAmount = Math.round(((baseAmount * selectedPlan.agents) * optionDiscount) / 100);
+  const savedAmount = Math.round(((baseAmount * selectedPlan.agents) * optionDiscount) / 100);
 
     setSavedAmount(savedAmount);
     const dataTeamPrice = plans.dataTeam.find(x => x.count === selectedPlan.dataTeam.dataNumber)?.price || 0;
     const acquisitionTeamTotalValue = acquisitionTeamTotal();
 
     return (baseAmount * selectedPlan.agents) + dataTeamPrice + acquisitionTeamTotalValue - savedAmount;
+
   }, [selectedPlan, acquisitionTeamTotal]);
 
   useEffect(() => {
@@ -108,9 +109,12 @@ const savedAmount = Math.round(((baseAmount * selectedPlan.agents) * optionDisco
   const options = {
     mode: 'payment',
     currency: 'usd',
-    amount: Math.max(1, Math.round(total * 100)),
+    amount: Math.max(1, Math.round(total)),
   };
 
+  console.log(total);
+
+  
   return (
     <>
       <Elements stripe={stripePromise} options={options}>
@@ -252,7 +256,8 @@ const savedAmount = Math.round(((baseAmount * selectedPlan.agents) * optionDisco
                     <h4>Acquisition Team:</h4>
                     <ul>
                       <li key={selectedPlan.acquisitionTeam[0].name}>
-                        {selectedPlan.acquisitionTeam.length === 3 ? 'All Acquisition Team Package' : selectedPlan.acquisitionTeam.length === 2 ? `${selectedPlan.acquisitionTeam[0].name} & ${selectedPlan.acquisitionTeam[1].name} ` : selectedPlan.acquisitionTeam[0].name} <span>${acquisitionTeamTotal()}</span>
+                        {selectedPlan.acquisitionTeam.length === 3 ? 'All Acquisition Team Package' : selectedPlan.acquisitionTeam.length === 2 ? `${selectedPlan.acquisitionTeam[0].name} & ${selectedPlan.acquisitionTeam[1].name} ` : selectedPlan.acquisitionTeam[0].name} 
+                        <span>${acquisitionTeamTotal()}</span>
                       </li>
                     </ul>
                   </div>
