@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-  const stripe=new Stripe ('sk_test_51QCBx9HaPDOKhmLck8jVtzWwllIXrWSIFlF4522U36NYPn4cDQi5BsHknrRUVvq2zj2l5Js5hgfSCprliaxItATG00qEVJRFxm',{
+  const stripe=new Stripe (process.env.STRIPE_SECRET_KEY,{
       typescript: true,
       apiVersion: "2023-08-16"
   })
@@ -10,7 +10,7 @@ import Stripe from "stripe";
 
     try{
       const paymentIntent=await stripe.paymentIntents.create({
-        amount: Number (amount) *100,
+        amount: Number (amount) * 100,
         currency: 'USD'
       })
       return NextResponse.json(paymentIntent.client_secret, {status: 200})

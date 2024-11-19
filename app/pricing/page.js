@@ -32,7 +32,7 @@ export default function Pricing() {
     };
 
     const sendEmail = async (name, email, state, message, agents, dataTeam) => {
-      await fetch(`api/send-email-custom`, {
+      await fetch(`/api/send-email-custom`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function Pricing() {
         }),
       })
       .then(response => response.json())
-      .then(data => window.location.href = `/payment-confirm?customPlan`)
+      .then(data => window.location.href = `/payment-confirm?customPlan=true`)
       .catch(error => console.error('Error sending email:', error));
     };;
     

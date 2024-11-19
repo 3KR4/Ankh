@@ -8,7 +8,7 @@ export async function POST(request) {
     const { name, email, state, message, agents, dataTeam } = await request.json();
 
     const dataForCompany = await resend.emails.send({
-      from: "Ankhcallcenter@ankhcallcenter.com", // Ensure this email address is valid and verified in Resend
+      from: "Ankhcallcenter@ankhcallcenter.com",
       to: ["info@ankhcallcenter.com"],
       subject: "New Custom Order",
       react: CustomPlanTemplate({

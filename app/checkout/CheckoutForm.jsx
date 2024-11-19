@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { usePlanContext } from '../Context';
 
 const CheckoutForm = ({openPay, setOpenPay, amount}) => {
-  const baseURL = 'https://www.ankhcallcenter.com'
-
   const { clientInfo, selectedPlan, setSelectedPlan, setClientInfo } = usePlanContext();
 
   const { name:fullName, email, state } = clientInfo;
@@ -38,7 +36,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       return;
     }
 
-    const res = await fetch(`api/create-intent`, {
+    const res = await fetch(`/api/create-intent`, {
       method: 'POST',
       body: JSON.stringify({
         amount: amount
@@ -68,7 +66,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
   };
 
   const sendEmail = async () => {
-    await fetch(`api/send-email`, {
+    await fetch(`/api/send-email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Added header
