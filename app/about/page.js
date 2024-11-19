@@ -74,7 +74,7 @@ export default function About() {
           <div className='box' data-aos="zoom-in-left">
             <Image src='/image/linkid.png' alt='icon' fill></Image>
             <h4>Heba Kamal | CFO <br/></h4>
-            <p>Heba is the financial backbone of our company, with an eye for detail and a knack for optimizing budgets. With over 15 years of experience in financial management.</p>
+            <p>Heba is the financial backbone of our company, with an eye for detail and a knack for optimizing budgets. With over 5 years of experience in financial management.</p>
           </div>
         </div>
       </div>

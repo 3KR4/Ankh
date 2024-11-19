@@ -9,12 +9,8 @@ import Link from 'next/link';
 import { usePlanContext } from '../Context';
 
 export default function Pricing() {
-  const baseURL = 'https://ankhcallcenter.com'
 
-  //'http://localhost:3000'
-  //'https://ankhcallcenter.com'
-
-  const { states, setClientInfo, setSelectedPlan, plans } = usePlanContext();
+  const { states, setClientInfo } = usePlanContext();
     const {
         register,
         handleSubmit,
@@ -33,11 +29,10 @@ export default function Pricing() {
         dataTeam: data.numDataTeam,
       })
       sendEmail(data.name, data.email, state, data.message, data.numAgents, data.numDataTeam)
-      window.location.href = `${baseURL}/payment-confirm?customPlan`
     };
 
     const sendEmail = async (name, email, state, message, agents, dataTeam) => {
-      await fetch(`${baseURL}/api/send-email-custom`, {
+      await fetch(`/api/send-email-custom`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,10 +46,24 @@ export default function Pricing() {
           dataTeam,
         }),
       })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error sending email:', error));
+        .then(async (response) => {
+          if (!response.ok) {
+            // Handle non-200 responses
+            const errorData = await response.json();
+            console.error('Error Response:', errorData);
+            return;
+          }
+          // Handle success response
+          const data = await response.json();
+          console.log('Success Response:', data);
+        })
+        .catch((error) => {
+          // Handle fetch or network-level errors
+          console.error('Network or Server Error:', error);
+        });
     };
+    
+    
 
     return (
         <>
@@ -68,7 +77,7 @@ export default function Pricing() {
                     <PlanCard plan='Platinum' details='Fits for Your Unique Needs' />
                     <PlanCard plan='Titanium' details='Ultimate Pack for Total Coverage' />
                 </div>
-                <Link data-aos="zoom-in-up" href='checkout' className='main-button'>Get Started</Link>
+                <Link data-aos="zoom-in-up" href='/checkout' className='main-button'>Get Started</Link>
             </div>
 
             <div className="customPlan hero container" id='customPlan'>
@@ -163,17 +172,17 @@ export default function Pricing() {
 
                     <div className={`inputHolder ${errors.numDataTeam ? 'notvalid' : ''}`}>
                       <h6 className="placeHolder" onClick={() => document.getElementById('numDataTeam').focus()}>
-                        Enter number of data team members
+                        Enter number of Data Records
                       </h6>
                       <div className="holder">
                         <input
                           type="number"
                           id="numDataTeam"
                           {...register('numDataTeam', {
-                            required: 'Please enter the number of data team members',
+                            required: 'Please enter the number of Data Records',
                             min: { value: 1, message: 'Must be at least 1' },
                           })}
-                          placeholder="Enter number of data team members"
+                          placeholder="Enter number of Data Records"
                         />
                       </div>
                       {errors.numDataTeam && <p className="error">{errors.numDataTeam.message}</p>}

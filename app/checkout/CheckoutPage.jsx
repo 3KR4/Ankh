@@ -111,9 +111,6 @@ export default function CheckoutPage() {
     currency: 'usd',
     amount: Math.max(1, Math.round(total)),
   };
-
-  console.log(total);
-
   
   return (
     <>

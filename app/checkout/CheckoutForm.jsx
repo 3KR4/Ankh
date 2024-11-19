@@ -5,11 +5,7 @@ import { useState } from 'react';
 import { usePlanContext } from '../Context';
 
 const CheckoutForm = ({openPay, setOpenPay, amount}) => {
-  const baseURL = 'https://ankhcallcenter.com'
-
-  //'http://localhost:3000'
-  //'https://ankhcallcenter.com'
-
+  const baseURL = 'https://www.ankhcallcenter.com'
 
   const { clientInfo, selectedPlan, setSelectedPlan, setClientInfo } = usePlanContext();
 
@@ -36,15 +32,13 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       alert(error.message)
     }
 
-    sendEmail();
-
     const {error: submitError} = await elements.submit();
       if (submitError) {
       handleError(submitError);
       return;
     }
 
-    const res = await fetch(`${baseURL}/api/create-intent`, {
+    const res = await fetch(`/api/create-intent`, {
       method: 'POST',
       body: JSON.stringify({
         amount: amount
@@ -61,24 +55,21 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       clientSecret,
       elements,
       confirmParams: {
-        return_url: `${baseURL}/payment-confirm`,
+        return_url: `https://www.ankhcallcenter.com/payment-confirm`,
       },
     });
 
     if (result.error) {
       // Show error to your customer (for example, payment details incomplete)
       alert(result.error.message);
-    } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
     }
     setLoading(false);
     localStorage.removeItem('selectedPlan');
+    sendEmail();
   };
 
   const sendEmail = async () => {
-    await fetch(`${baseURL}/api/send-email`, {
+    await fetch(`/api/send-email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Added header
@@ -95,11 +86,23 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
         totalprice: amount,
       }),
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error sending email:', error));
+      .then(async (response) => {
+        if (!response.ok) {
+          // Handle non-200 responses
+          const errorData = await response.json();
+          console.error('Error Response:', errorData);
+          return;
+        }
+        // Handle success response
+        const data = await response.json();
+        console.log('Success Response:', data);
+      })
+      .catch((error) => {
+        // Handle fetch or network-level errors
+        console.error('Network or Server Error:', error);
+      });
   };
-  
+
 
   return (
     <form onSubmit={handleSubmit} className={`stripeForm menu ${openPay && 'active'}`}>

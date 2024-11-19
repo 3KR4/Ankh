@@ -9,7 +9,7 @@ export async function POST(Request) {
 
     // Send email to your company
     const dataForCompany = await resend.emails.send({
-      from: "Ankhcallcenter@ankhcallcenter.com", // Ensure this email address is valid and verified in Resend
+      from: "Ankhcallcenter@ankhcallcenter.com",
       to: ["info@ankhcallcenter.com"],
       subject: "New Purchase",
       react: EmailTemplate({
@@ -26,7 +26,7 @@ export async function POST(Request) {
       }),
     });
 
-    // Send email to the client
+
     const dataForClient = await resend.emails.send({
       from: "Ankhcallcenter@ankhcallcenter.com",
       to: [email],

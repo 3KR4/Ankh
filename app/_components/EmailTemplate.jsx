@@ -21,7 +21,7 @@ export default function EmailTemplate({ fullName, email, state, planName, agent,
               <strong>Email:</strong> <span style={{ color: '#e0be40' }}>{email}</span>
             </p>
             <p style={{ color: '#555', margin: '5px 0', fontSize: '16px' }}>
-              <strong>State:</strong> {state}
+              <strong>State:</strong> {state == 'Select Your State' ? 'No state Selected' : state}
             </p>
           </div>
         )}
