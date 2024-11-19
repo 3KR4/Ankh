@@ -32,7 +32,7 @@ export default function Pricing() {
     };
 
     const sendEmail = async (name, email, state, message, agents, dataTeam) => {
-      await fetch(`/api/send-email-custom`, {
+      await fetch(`api/send-email-custom`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,22 +46,10 @@ export default function Pricing() {
           dataTeam,
         }),
       })
-        .then(async (response) => {
-          if (!response.ok) {
-            // Handle non-200 responses
-            const errorData = await response.json();
-            console.error('Error Response:', errorData);
-            return;
-          }
-          // Handle success response
-          const data = await response.json();
-          console.log('Success Response:', data);
-        })
-        .catch((error) => {
-          // Handle fetch or network-level errors
-          console.error('Network or Server Error:', error);
-        });
-    };
+      .then(response => response.json())
+      .then(data => window.location.href = `/payment-confirm?customPlan`)
+      .catch(error => console.error('Error sending email:', error));
+    };;
     
     
 

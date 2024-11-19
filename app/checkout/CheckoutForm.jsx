@@ -38,7 +38,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       return;
     }
 
-    const res = await fetch(`/api/create-intent`, {
+    const res = await fetch(`api/create-intent`, {
       method: 'POST',
       body: JSON.stringify({
         amount: amount
@@ -51,7 +51,6 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
     const clientSecret = await res.json()
 
     const result = await stripe.confirmPayment({
-      //`Elements` instance that was used to create the Payment Element
       clientSecret,
       elements,
       confirmParams: {
@@ -60,16 +59,16 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
     });
 
     if (result.error) {
-      // Show error to your customer (for example, payment details incomplete)
       alert(result.error.message);
+    } else {
+      setLoading(false);
+      localStorage.removeItem('selectedPlan');
+      sendEmail();
     }
-    setLoading(false);
-    localStorage.removeItem('selectedPlan');
-    sendEmail();
   };
 
   const sendEmail = async () => {
-    await fetch(`/api/send-email`, {
+    await fetch(`api/send-email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Added header
@@ -86,23 +85,10 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
         totalprice: amount,
       }),
     })
-      .then(async (response) => {
-        if (!response.ok) {
-          // Handle non-200 responses
-          const errorData = await response.json();
-          console.error('Error Response:', errorData);
-          return;
-        }
-        // Handle success response
-        const data = await response.json();
-        console.log('Success Response:', data);
-      })
-      .catch((error) => {
-        // Handle fetch or network-level errors
-        console.error('Network or Server Error:', error);
-      });
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error sending email:', error));
   };
-
 
   return (
     <form onSubmit={handleSubmit} className={`stripeForm menu ${openPay && 'active'}`}>
