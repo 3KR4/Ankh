@@ -47,7 +47,10 @@ export default function Pricing() {
         }),
       })
       .then(response => response.json())
-      .then(data => window.location.href = `/payment-confirm?customPlan=true`)
+      .then(data => {
+        console.log(data);
+        window.location.href = `/payment-confirm?customPlan=true`
+      })
       .catch(error => console.error('Error sending email:', error));
     };;
     

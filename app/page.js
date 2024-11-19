@@ -14,11 +14,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Home() {
-  console.log('xxxxx');
-  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
-  console.log(process.env.STRIPE_SECRET_KEY);
-  console.log(process.env.RESEND_API_KEY);
-  
   return (
     <>
       <div className="hero home container" data-aos="zoom-in-up">

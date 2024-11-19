@@ -26,16 +26,16 @@ function Header() {
         <div className='title-logo'><h1>AN</h1><h1>KH.</h1></div>
       </Link>
       <nav>
-        <Link href='/pricing' className={isActive('/pricing') ? 'active' : ''}>
+        <Link href='/pricing' className={isActive('/pricing/') ? 'active' : ''}>
           Pricing
         </Link>
-        <Link href='/about' className={isActive('/about') ? 'active' : ''}>
+        <Link href='/about' className={isActive('/about/') ? 'active' : ''}>
           About Us
         </Link>
-        <Link href='/why-us' className={isActive('/why-us') ? 'active' : ''}>
+        <Link href='/why-us' className={isActive('/why-us/') ? 'active' : ''}>
           Why ANKH
         </Link>
-        <Link href='/process' className={isActive('/process') ? 'active' : ''}>
+        <Link href='/process' className={isActive('/process/') ? 'active' : ''}>
           Process
         </Link>
       </nav>
