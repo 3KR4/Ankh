@@ -58,11 +58,11 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
 
     if (result.error) {
       alert(result.error.message);
-    } else {
-      setLoading(false);
-      localStorage.removeItem('selectedPlan');
-      sendEmail();
-    }
+    } 
+
+    setLoading(false);
+    localStorage.removeItem('selectedPlan');
+    sendEmail();
   };
 
   const sendEmail = async () => {
