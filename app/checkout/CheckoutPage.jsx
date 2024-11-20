@@ -11,7 +11,9 @@ import dynamic from 'next/dynamic';
 
 const DynamicFlexible_Plan = dynamic(() => import('../_components/Flexible_Plan'));
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY || 'pk_test_51QCBx9HaPDOKhmLc53Aw1Y0hl84YFA1s5DxXylVMDYlLjEOYQdsKxt0ExaTkZ4U7j5thOYfU0DCohP7mzkn2NG6G00z9ek3NPM');
+
+console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
 export default function CheckoutPage() {
   const { states, setClientInfo, selectedPlan, plans } = usePlanContext();

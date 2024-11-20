@@ -26,7 +26,6 @@ export async function POST(Request) {
       }),
     });
 
-
     const dataForClient = await resend.emails.send({
       from: "Ankhcallcenter@ankhcallcenter.com",
       to: [email],
