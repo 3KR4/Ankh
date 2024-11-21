@@ -34,8 +34,8 @@ export async function POST(request) {
       }),
     });
 
-    return new Response(JSON.stringify({ dataForCompany, dataForClient }), { status: 200 });
+    return new Response(JSON.stringify({ dataForCompany, dataForClient }), {status: 200});
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    return new Response(JSON.stringify({ error: error.message }), {status: 500});
   }
 }

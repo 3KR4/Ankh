@@ -46,13 +46,19 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       },
     });
   
-    const { clientSecret } = await res.json(); // Parse clientSecret from the response.
+    const { clientSecret } = await res.json();
+
+    if (!clientSecret) {
+      alert('Payment Intent creation failed. Please try again.');
+      setLoading(false);
+      return;
+    }
   
     const result = await stripe.confirmPayment({
       clientSecret,
       elements,
       confirmParams: {
-        return_url: `https://www.ankhcallcenter.com/payment-confirm`,
+        return_url: `http://localhost:3000/payment-confirm`,
       },
     });
   
@@ -74,7 +80,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
+      body: JSON.stringify({ 
         fullName,
         email,
         state,
@@ -86,7 +92,6 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
         totalprice: amount,
       }),
     })
-    .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error sending email:', error));
   };

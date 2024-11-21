@@ -46,13 +46,11 @@ export default function Pricing() {
           dataTeam,
         }),
       })
-      .then(response => response.json())
       .then(data => {
-        console.log(data);
         window.location.href = `/payment-confirm?customPlan=true`
       })
-      .catch(error => console.error('Error sending email:', error));
-    };;
+      .catch(error => console.error(error));
+    };
     
     
 
