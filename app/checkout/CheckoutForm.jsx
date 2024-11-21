@@ -38,9 +38,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
   
     const res = await fetch(`/api/create-intent`, {
       method: 'POST',
-      body: JSON.stringify({
-        amount: amount,
-      }),
+      body: JSON.stringify({ amount }),
       headers: {
         'Content-Type': 'application/json',
       },
