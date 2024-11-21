@@ -12,6 +12,11 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
 
   const curentAcquisitionTeam = acquisitionTeam?.map(acquisition => acquisition.name);
 
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [loading, setLoading] = useState(false)
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
