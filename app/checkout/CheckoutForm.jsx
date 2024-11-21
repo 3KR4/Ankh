@@ -12,42 +12,37 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
 
   const curentAcquisitionTeam = acquisitionTeam?.map(acquisition => acquisition.name);
 
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const [loading, setLoading] = useState(false)
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true)
-
+    setLoading(true);
+  
     if (!stripe || !elements) {
       return;
     }
-
-    const handleError = (error)=>{
-      setLoading (false)
-      alert(error.message)
-    }
-
-    const {error: submitError} = await elements.submit();
-      if (submitError) {
+  
+    const handleError = (error) => {
+      setLoading(false);
+      alert(error.message);
+    };
+  
+    const { error: submitError } = await elements.submit();
+    if (submitError) {
       handleError(submitError);
       return;
     }
-
+  
     const res = await fetch(`/api/create-intent`, {
       method: 'POST',
       body: JSON.stringify({
-        amount: amount
+        amount: amount,
       }),
       headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    
-    const clientSecret = await res.json()
-
+        'Content-Type': 'application/json',
+      },
+    });
+  
+    const { clientSecret } = await res.json(); // Parse clientSecret from the response.
+  
     const result = await stripe.confirmPayment({
       clientSecret,
       elements,
@@ -55,21 +50,24 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
         return_url: `https://www.ankhcallcenter.com/payment-confirm`,
       },
     });
-
+  
     if (result.error) {
-      alert(result.error.message);
-    } 
-
-    setLoading(false);
-    localStorage.removeItem('selectedPlan');
-    sendEmail();
+      alert(result.error.message); // Handle payment error.
+      setLoading(false); // Stop loading on error.
+    } else {
+      // Payment succeeded, handle success flow.
+      setLoading(false); // Stop loading.
+      localStorage.removeItem('selectedPlan'); // Clean up local storage.
+      sendEmail(); // Trigger email notification.
+    }
   };
+  
 
   const sendEmail = async () => {
     await fetch(`/api/send-email`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', // Added header
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         fullName,

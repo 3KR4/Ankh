@@ -7,7 +7,6 @@ export async function POST(Request) {
   try {
     const { fullName, email, state, planName, agent, dataTeam, resources, acquisitionTeam, totalprice } = await Request.json();
 
-    // Send email to your company
     const dataForCompany = await resend.emails.send({
       from: "Ankhcallcenter@ankhcallcenter.com",
       to: ["info@ankhcallcenter.com"],
