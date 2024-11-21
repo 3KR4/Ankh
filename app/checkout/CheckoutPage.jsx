@@ -9,6 +9,7 @@ import CheckoutForm from './CheckoutForm';
 import { usePlanContext } from '../Context';
 import dynamic from 'next/dynamic';
 
+
 const DynamicFlexible_Plan = dynamic(() => import('../_components/Flexible_Plan'));
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
