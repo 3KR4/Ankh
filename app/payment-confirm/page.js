@@ -35,7 +35,12 @@ function Payment_confirm() {
       
       <div className='btns-holder'>
         <BookBtn />
-        <Link className='main-button' href='/'>Back to home</Link>
+        {hasCustomPlan ? (
+          <a className='main-button' href='https://ankhcallcenter.com'>Back to home</a>
+        ) : (
+          <Link className='main-button' href='/'>Back to home</Link>
+        )}
+        
       </div>
     </div>
   )

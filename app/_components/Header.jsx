@@ -26,18 +26,18 @@ function Header() {
         <div className='title-logo'><h1>AN</h1><h1>KH.</h1></div>
       </Link>
       <nav>
-        <Link href='/pricing' className={isActive('/pricing/') ? 'active' : ''}>
+        <a href='/pricing' className={isActive('/pricing') ? 'active' : ''}>
           Pricing
-        </Link>
-        <Link href='/about' className={isActive('/about/') ? 'active' : ''}>
+        </a>
+        <a href='https://ankhcallcenter.com/about/' className={isActive('/about/') ? 'active' : ''}>
           About Us
-        </Link>
-        <Link href='/why-us' className={isActive('/why-us/') ? 'active' : ''}>
+        </a>
+        <a href='https://ankhcallcenter.com/why-us/' className={isActive('/why-us/') ? 'active' : ''}>
           Why ANKH
-        </Link>
-        <Link href='/process' className={isActive('/process/') ? 'active' : ''}>
+        </a>
+        <a href='https://ankhcallcenter.com/process/' className={isActive('/process/') ? 'active' : ''}>
           Process
-        </Link>
+        </a>
       </nav>
       <div>
       <BookBtn />

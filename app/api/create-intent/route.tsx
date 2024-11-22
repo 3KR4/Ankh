@@ -13,7 +13,7 @@ export async function POST(request: any) {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Number(amount) * 100, // Convert amount to cents
-      currency: 'USD',
+      currency: '1',
     });
 
     // Return clientSecret in an object

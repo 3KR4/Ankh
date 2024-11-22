@@ -38,7 +38,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
   
     const res = await fetch(`/api/create-intent`, {
       method: 'POST',
-      body: JSON.stringify({ amount }),
+      body: JSON.stringify({ amount: 1 }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -56,7 +56,7 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
       clientSecret,
       elements,
       confirmParams: {
-        return_url: `http://localhost:3000/payment-confirm`,
+        return_url: `https://ankhcallcenter.com/payment-confirm/`,
       },
     });
   

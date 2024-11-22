@@ -66,7 +66,7 @@ export default function Pricing() {
                     <PlanCard plan='Platinum' details='Fits for Your Unique Needs' />
                     <PlanCard plan='Titanium' details='Ultimate Pack for Total Coverage' />
                 </div>
-                <Link data-aos="zoom-in-up" href='/checkout' className='main-button'>Get Started</Link>
+                <a data-aos="zoom-in-up" href='/checkout' className='main-button'>Get Started</a>
             </div>
 
             <div className="customPlan hero container" id='customPlan'>
