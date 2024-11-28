@@ -110,13 +110,13 @@ export default function CheckoutPage() {
   const options = {
     mode: 'payment',
     currency: 'usd',
-    amount: 100,
+    amount: 50,
   };
   
   return (
     <>
       <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm openPay={openPay} setOpenPay={setOpenPay} amount={1} />
+        <CheckoutForm openPay={openPay} setOpenPay={setOpenPay} amount={total} baseAmount={BaseAmount} acqTotal={acquisitionTeamTotal()} savedAmount={savedAmount} OptionDiscount={OptionDiscount} />
       </Elements>
 
       <div className="checkout">

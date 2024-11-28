@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(Request) {
   try {
-    const { fullName, email, state, planName, agent, dataTeam, resources, acquisitionTeam, totalprice } = await Request.json();
+    const { fullName, email, state, planName, agent, dataTeam, resources, acquisitionTeam, totalprice, baseAmount, acqTotal, OptionDiscount, savedAmount } = await Request.json();
 
     const dataForCompany = await resend.emails.send({
       from: "Ankhcallcenter@ankhcallcenter.com",
@@ -21,6 +21,10 @@ export async function POST(Request) {
         resources,
         acquisitionTeam,
         totalprice,
+        acqTotal,
+        baseAmount,
+        OptionDiscount,
+        savedAmount,
         recipientType: "company",
       }),
     });
@@ -36,6 +40,10 @@ export async function POST(Request) {
         resources,
         acquisitionTeam,
         totalprice,
+        acqTotal,
+        baseAmount,
+        OptionDiscount,
+        savedAmount,
         recipientType: "client",
       }),
     });

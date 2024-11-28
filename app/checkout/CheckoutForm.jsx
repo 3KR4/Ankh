@@ -4,13 +4,11 @@ import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { usePlanContext } from '../Context';
 
-const CheckoutForm = ({openPay, setOpenPay, amount}) => {
-  const { clientInfo, selectedPlan, setSelectedPlan, setClientInfo } = usePlanContext();
+const CheckoutForm = ({openPay, setOpenPay, amount, baseAmount, acqTotal, OptionDiscount, savedAmount}) => {
+  const { clientInfo, selectedPlan, } = usePlanContext();
 
   const { name:fullName, email, state } = clientInfo;
   const { planName, resources, agents, dataTeam, acquisitionTeam } = selectedPlan;
-
-  const curentAcquisitionTeam = acquisitionTeam?.map(acquisition => acquisition.name);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -19,56 +17,57 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
+    // setLoading(true);
   
-    if (!stripe || !elements) {
-      return;
-    }
+    // if (!stripe || !elements) {
+    //   return;
+    // }
   
-    const handleError = (error) => {
-      setLoading(false);
-      alert(error.message);
-    };
+    // const handleError = (error) => {
+    //   setLoading(false);
+    //   alert(error.message);
+    // };
   
-    const { error: submitError } = await elements.submit();
-    if (submitError) {
-      handleError(submitError);
-      return;
-    }
+    // const { error: submitError } = await elements.submit();
+    // if (submitError) {
+    //   handleError(submitError);
+    //   return;
+    // }
   
-    const res = await fetch(`/api/create-intent`, {
-      method: 'POST',
-      body: JSON.stringify({ amount }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    // const res = await fetch(`/api/create-intent`, {
+    //   method: 'POST',
+    //   body: JSON.stringify({ amount }),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // });
   
-    const { clientSecret } = await res.json();
+    // const { clientSecret } = await res.json();
 
-    if (!clientSecret) {
-      alert('Payment Intent creation failed. Please try again.');
-      setLoading(false);
-      return;
-    }
+    // if (!clientSecret) {
+    //   alert('Payment Intent creation failed. Please try again.');
+    //   setLoading(false);
+    //   return;
+    // }
   
-    const result = await stripe.confirmPayment({
-      clientSecret,
-      elements,
-      confirmParams: {
-        return_url: `https://ankhcallcenter.com/payment-confirm/`,
-      },
-    });
+    // const result = await stripe.confirmPayment({
+    //   clientSecret,
+    //   elements,
+    //   confirmParams: {
+    //     return_url: `https://ankhcallcenter.com/payment-confirm/`,
+    //   },
+    // });
   
-    if (result.error) {
-      alert(result.error.message); // Handle payment error.
-      setLoading(false); // Stop loading on error.
-    } else {
-      // Payment succeeded, handle success flow.
-      setLoading(false); // Stop loading.
-      localStorage.removeItem('selectedPlan'); // Clean up local storage.
-      sendEmail(); // Trigger email notification.
-    }
+    // if (result.error) {
+    //   alert(result.error.message); // Handle payment error.
+    //   setLoading(false); // Stop loading on error.
+    // } else {
+    //   // Payment succeeded, handle success flow.
+    //   setLoading(false); // Stop loading.
+    //   localStorage.removeItem('selectedPlan'); // Clean up local storage.
+
+    // }
+          sendEmail(); // Trigger email notification.
   };
   
 
@@ -84,10 +83,14 @@ const CheckoutForm = ({openPay, setOpenPay, amount}) => {
         state,
         planName,
         agent: agents,
-        dataTeam: dataTeam.dataNumber,
+        dataTeam: dataTeam,
         resources,
-        acquisitionTeam: curentAcquisitionTeam,
+        acquisitionTeam,
         totalprice: amount,
+        acqTotal,
+        baseAmount,
+        OptionDiscount,
+        savedAmount
       }),
     })
     .then(data => console.log(data))

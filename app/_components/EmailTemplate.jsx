@@ -1,4 +1,4 @@
-export default function EmailTemplate({ fullName, email, state, planName, agent, dataTeam, resources, acquisitionTeam, totalprice, recipientType }) {
+export default function EmailTemplate({ fullName, email, state, planName, agent, dataTeam, resources, acquisitionTeam, totalprice, baseAmount, acqTotal, OptionDiscount, savedAmount, recipientType }) {
   return (
     <div style={{ background: '#f7f7f7', padding: '40px 20px', fontFamily: 'Arial, sans-serif' }}>
       <div style={{ maxWidth: '600px', margin: 'auto', background: '#ffffff', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', padding: '35px', textAlign: 'center' }}>
@@ -33,12 +33,17 @@ export default function EmailTemplate({ fullName, email, state, planName, agent,
           <p style={{ color: '#555', fontSize: '16px' }}>
             <strong>Plan Name:</strong> <span style={{ color: '#e0be40', fontSize: '22px', fontWeight: '600' }}>{planName}</span>
           </p>
-          <p style={{ color: '#555', fontSize: '16px' }}>
-            <strong>Agents:</strong> {agent} {agent === 1 ? 'agent' : 'agents'}
+          <p style={{ color: '#555', fontSize: '16px', width: '100%', position: 'relative' }}>
+            <strong>Agents:</strong> {agent} {agent === 1 ? 'agent' : 'agents'} <span style={{position: 'absolute', right: '0'}}>${baseAmount * agent}</span>
           </p>
-          {dataTeam && (
-            <p style={{ color: '#555', fontSize: '16px' }}>
-              <strong>Data Records:</strong> {dataTeam}
+          {savedAmount !== 0 && (
+            <p style={{ color: '#555', fontSize: '16px', width: '100%', position: 'relative' }}>
+              <strong>{OptionDiscount}% Discount</strong> <span style={{position: 'absolute', right: '0'}}>-${savedAmount}</span>
+            </p>
+          )}
+          {dataTeam?.length > 0 && (
+            <p style={{ color: '#555', fontSize: '16px', width: '100%', position: 'relative' }}>
+              <strong>Data Records:</strong> {dataTeam.dataNumber} <span style={{position: 'absolute', right: '0'}}>${dataTeam.price}</span>
             </p>
           )}
           
@@ -55,9 +60,10 @@ export default function EmailTemplate({ fullName, email, state, planName, agent,
           <div>
             <h4 style={{ color: '#333', fontSize: '18px', margin: '10px 0 5px' }}>AcquisitionTeam</h4>
             <ul style={{ listStyleType: 'circle', paddingLeft: '20px', margin: '5px 0', color: '#555' }}>
-              {acquisitionTeam.map(x => (
-                <li key={x} style={{ marginBottom: '5px', fontSize: '16px' }}>{x}</li>
-              ))}
+              <li key={acquisitionTeam[0].name} style={{ marginBottom: '5px', fontSize: '16px', width: '100%', position: 'relative' }}>
+                {acquisitionTeam.length === 3 ? 'All Acquisition Team Package' : acquisitionTeam.length === 2 ? `${acquisitionTeam[0].name} & ${acquisitionTeam[1].name} ` : acquisitionTeam[0].name} 
+                <span style={{position: 'absolute', right: '0'}}>${acqTotal}</span>
+              </li>
             </ul>
           </div>
         )}
