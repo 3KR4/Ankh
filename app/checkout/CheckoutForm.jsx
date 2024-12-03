@@ -17,57 +17,56 @@ const CheckoutForm = ({openPay, setOpenPay, amount, baseAmount, acqTotal, Option
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // setLoading(true);
+    setLoading(true);
   
-    // if (!stripe || !elements) {
-    //   return;
-    // }
+    if (!stripe || !elements) {
+      return;
+    }
   
-    // const handleError = (error) => {
-    //   setLoading(false);
-    //   alert(error.message);
-    // };
+    const handleError = (error) => {
+      setLoading(false);
+      alert(error.message);
+    };
   
-    // const { error: submitError } = await elements.submit();
-    // if (submitError) {
-    //   handleError(submitError);
-    //   return;
-    // }
+    const { error: submitError } = await elements.submit();
+    if (submitError) {
+      handleError(submitError);
+      return;
+    }
   
-    // const res = await fetch(`/api/create-intent`, {
-    //   method: 'POST',
-    //   body: JSON.stringify({ amount }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // });
+    const res = await fetch(`/api/create-intent`, {
+      method: 'POST',
+      body: JSON.stringify({ amount }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   
-    // const { clientSecret } = await res.json();
+    const { clientSecret } = await res.json();
 
-    // if (!clientSecret) {
-    //   alert('Payment Intent creation failed. Please try again.');
-    //   setLoading(false);
-    //   return;
-    // }
+    if (!clientSecret) {
+      alert('Payment Intent creation failed. Please try again later.');
+      setLoading(false);
+      return;
+    }
   
-    // const result = await stripe.confirmPayment({
-    //   clientSecret,
-    //   elements,
-    //   confirmParams: {
-    //     return_url: `https://ankhcallcenter.com/payment-confirm/`,
-    //   },
-    // });
+    const result = await stripe.confirmPayment({
+      clientSecret,
+      elements,
+      confirmParams: {
+        return_url: `https://ankhcallcenter.com/payment-confirm/`,
+      },
+    });
   
-    // if (result.error) {
-    //   alert(result.error.message); // Handle payment error.
-    //   setLoading(false); // Stop loading on error.
-    // } else {
-    //   // Payment succeeded, handle success flow.
-    //   setLoading(false); // Stop loading.
-    //   localStorage.removeItem('selectedPlan'); // Clean up local storage.
-
-    // }
-          sendEmail(); // Trigger email notification.
+    if (result.error) {
+      alert(result.error.message); // Handle payment error.
+      setLoading(false); // Stop loading on error.
+    } else {
+      // Payment succeeded, handle success flow.
+      sendEmail(); // Trigger email notification.
+      setLoading(false); // Stop loading.
+      localStorage.removeItem('selectedPlan'); // Clean up local storage.
+    }
   };
   
 

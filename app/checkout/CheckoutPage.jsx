@@ -110,7 +110,7 @@ export default function CheckoutPage() {
   const options = {
     mode: 'payment',
     currency: 'usd',
-    amount: 50,
+    amount: total,
   };
   
   return (
