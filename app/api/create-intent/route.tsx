@@ -12,13 +12,14 @@ export async function POST(request: any) {
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Number(amount) * 100, // Convert amount to cents
-      currency: '1',
+      amount: Math.round(Number(amount) * 100), // Convert amount to cents and ensure it's an integer
+      currency: 'usd', // Use a valid 3-letter currency code
     });
 
     // Return clientSecret in an object
     return NextResponse.json({ clientSecret: paymentIntent.client_secret }, { status: 200 });
   } catch (error: any) {
-    return new NextResponse(error.message, { status: 400 });
+    console.error("Stripe Error:", error.message); // Log the error for debugging
+    return NextResponse.json({ error: error.message }, { status: 400 });
   }
 }
